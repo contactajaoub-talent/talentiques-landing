@@ -26,7 +26,9 @@ html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;-moz-osx-font-smo
 body{font-family:var(--font);color:var(--text-on-dark);background:var(--navy);line-height:1.65;font-size:16px;overflow-x:hidden}
 body::before{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse 80% 60% at 10% 20%,rgba(6,131,201,0.08) 0%,transparent 60%),radial-gradient(ellipse 60% 50% at 90% 80%,rgba(6,131,201,0.06) 0%,transparent 60%);pointer-events:none;z-index:0}
 body>*{position:relative;z-index:1}
-img{max-width:100%;display:block}a{text-decoration:none;color:inherit}ul{list-style:none}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
 .container{max-width:var(--max-w);margin:0 auto;padding:0 24px}
 
 /* HEADER */
@@ -38,12 +40,6 @@ img{max-width:100%;display:block}a{text-decoration:none;color:inherit}ul{list-st
 .nav-links a:hover{color:var(--white)}
 .nav-cta{background:var(--blue);color:var(--white)!important;padding:10px 24px;border-radius:10px;font-size:14px!important;font-weight:600!important;transition:var(--transition)}
 .nav-cta:hover{background:var(--blue-dark);transform:translateY(-1px);box-shadow:0 4px 20px rgba(6,131,201,0.4)}
-.mobile-toggle{display:none;background:none;border:none;cursor:pointer;width:40px;height:40px;flex-direction:column;align-items:center;justify-content:center;gap:5px}
-.mobile-toggle span{display:block;width:22px;height:2px;background:var(--white);transition:var(--transition);border-radius:2px}
-.mobile-menu{display:none;position:fixed;top:72px;left:0;right:0;bottom:0;background:var(--navy);padding:32px 24px;z-index:999}
-.mobile-menu.active{display:flex;flex-direction:column}
-.mobile-menu a{display:block;padding:16px 0;font-size:16px;font-weight:500;color:var(--text-on-dark);border-bottom:1px solid var(--border-dark)}
-.mobile-menu .nav-cta{display:inline-block;margin-top:24px;text-align:center;border-bottom:none}
 
 /* HERO */
 .hero{padding:160px 0 100px;position:relative;overflow:hidden;background:radial-gradient(ellipse 70% 60% at 70% 30%,rgba(6,131,201,0.12) 0%,transparent 60%),radial-gradient(ellipse 50% 40% at 20% 80%,rgba(6,131,201,0.08) 0%,transparent 60%),linear-gradient(180deg,var(--navy) 0%,#0D1F38 100%)}
@@ -71,7 +67,9 @@ img{max-width:100%;display:block}a{text-decoration:none;color:inherit}ul{list-st
 .mockup-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:var(--radius-lg);padding:32px;position:relative;z-index:2;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 8px 40px rgba(0,0,0,0.3)}
 .mockup-header{display:flex;align-items:center;gap:8px;margin-bottom:24px;padding-bottom:16px;border-bottom:1px solid rgba(255,255,255,0.06)}
 .mockup-dot{width:10px;height:10px;border-radius:50%}
-.mockup-dot:nth-child(1){background:#FF6B6B}.mockup-dot:nth-child(2){background:#FFD93D}.mockup-dot:nth-child(3){background:#6BCB77}
+.mockup-dot:nth-child(1){background:#FF6B6B}
+.mockup-dot:nth-child(2){background:#FFD93D}
+.mockup-dot:nth-child(3){background:#6BCB77}
 .mockup-label{font-size:12px;font-weight:700;color:var(--blue-light);text-transform:uppercase;letter-spacing:0.1em;margin-left:auto}
 .mockup-lines{display:flex;flex-direction:column;gap:12px}
 .mockup-line{height:8px;border-radius:4px}
@@ -242,24 +240,47 @@ img{max-width:100%;display:block}a{text-decoration:none;color:inherit}ul{list-st
 
 /* RESPONSIVE */
 @media(max-width:1024px){
-  .hero-inner{grid-template-columns:1fr;gap:48px}.hero-visual{order:-1;max-width:480px;margin:0 auto}
+  .hero-inner{grid-template-columns:1fr;gap:48px}
+  .hero-visual{order:-1;max-width:480px;margin:0 auto}
   .offers-grid{grid-template-columns:1fr;max-width:480px;margin:0 auto 80px}
-  .solution-grid{grid-template-columns:repeat(2,1fr)}.trust-grid{grid-template-columns:repeat(2,1fr)}
-  .method-steps{flex-direction:column;gap:32px}.method-steps::before{display:none}
-  .deliverables-grid{grid-template-columns:repeat(2,1fr)}.testimonials-grid{grid-template-columns:1fr 1fr}
-  .footer-inner{grid-template-columns:1fr 1fr}.problem-grid{grid-template-columns:1fr}
-  .problem-visual{grid-template-columns:repeat(4,1fr)}.comparison-wrapper{overflow-x:auto}
+  .solution-grid{grid-template-columns:repeat(2,1fr)}
+  .trust-grid{grid-template-columns:repeat(2,1fr)}
+  .method-steps{flex-direction:column;gap:32px}
+  .method-steps::before{display:none}
+  .deliverables-grid{grid-template-columns:repeat(2,1fr)}
+  .testimonials-grid{grid-template-columns:1fr 1fr}
+  .footer-inner{grid-template-columns:1fr 1fr}
+  .problem-grid{grid-template-columns:1fr}
+  .problem-visual{grid-template-columns:repeat(4,1fr)}
+  .comparison-wrapper{overflow-x:auto}
 }
+
 @media(max-width:768px){
-  .nav-links{display:none}.mobile-toggle{display:flex}.hero{padding:120px 0 72px}
-  .hero h1{font-size:28px}.hero-ctas,.hero-trust{flex-direction:column}
+  .header-inner{flex-direction:column;justify-content:center;height:auto;padding:16px 24px;gap:16px}
+  .nav-links{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+  .hero{padding:210px 0 72px}
+  .hero h1{font-size:28px}
+  .hero-ctas,.hero-trust{flex-direction:column}
   .trust-grid,.solution-grid,.testimonials-grid{grid-template-columns:1fr}
-  .deliverables-grid{grid-template-columns:1fr 1fr}.final-cta-buttons{flex-direction:column;align-items:center}
-  .footer-inner{grid-template-columns:1fr;gap:32px}.footer-bottom{flex-direction:column;gap:8px;text-align:center}
-  .section{padding:72px 0}.problem-visual{grid-template-columns:repeat(2,1fr)}
+  .deliverables-grid{grid-template-columns:1fr 1fr}
+  .final-cta-buttons{flex-direction:column;align-items:center}
+  .footer-inner{grid-template-columns:1fr;gap:32px}
+  .footer-bottom{flex-direction:column;gap:8px;text-align:center}
+  .section{padding:72px 0}
+  .problem-visual{grid-template-columns:repeat(2,1fr)}
   .contact-methods{flex-direction:column;align-items:center}
 }
-@media(max-width:480px){.deliverables-grid{grid-template-columns:1fr}.problem-visual{grid-template-columns:1fr 1fr}.floating-card.linkedin{right:0}.floating-card.lettre{left:0}}
+
+@media(max-width:480px){
+  .hero{padding:240px 0 64px}
+  .deliverables-grid{grid-template-columns:1fr}
+  .problem-visual{grid-template-columns:1fr 1fr}
+  .floating-card.linkedin{right:0}
+  .floating-card.lettre{left:0}
+  .nav-links{gap:10px}
+  .nav-links a{font-size:13px}
+}
+
 .fade-up{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease}
 .fade-up.visible{opacity:1;transform:translateY(0)}
 </style>
@@ -278,16 +299,6 @@ img{max-width:100%;display:block}a{text-decoration:none;color:inherit}ul{list-st
       <a href="#contact">Contact</a>
       <a href="#offres" class="nav-cta">Choisir mon offre</a>
     </nav>
-    <button class="mobile-toggle" onclick="toggleMobile()" aria-label="Menu"><span></span><span></span><span></span></button>
-  </div>
-  <div class="mobile-menu" id="mobileMenu">
-    <a href="#mission" onclick="closeMobile()">Mission</a>
-    <a href="#offres" onclick="closeMobile()">Offres</a>
-    <a href="#methode" onclick="closeMobile()">Méthode</a>
-    <a href="#avis" onclick="closeMobile()">Avis</a>
-    <a href="#faq" onclick="closeMobile()">FAQ</a>
-    <a href="#contact" onclick="closeMobile()">Contact</a>
-    <a href="#offres" class="nav-cta" onclick="closeMobile()">Choisir mon offre</a>
   </div>
 </header>
 
@@ -390,6 +401,7 @@ img{max-width:100%;display:block}a{text-decoration:none;color:inherit}ul{list-st
         <div class="offer-bonus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-6"/><polyline points="12 3 12 15"/><polyline points="8 7 12 3 16 7"/></svg>Tableau de suivi offert</div>
         <a href="https://www.paypal.com/ncp/payment/YN3NBSLFN4TBJ" class="offer-cta" target="_blank" rel="noopener">Bénéficier de cette offre</a>
       </div>
+
       <div class="offer-card fade-up">
         <div class="offer-title">Refonte de CV + Lettre de motivation</div>
         <div class="offer-price">30 <span>€</span></div>
@@ -403,6 +415,7 @@ img{max-width:100%;display:block}a{text-decoration:none;color:inherit}ul{list-st
         <div class="offer-bonus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-6"/><polyline points="12 3 12 15"/><polyline points="8 7 12 3 16 7"/></svg>Tableau de suivi offert</div>
         <a href="https://www.paypal.com/ncp/payment/GTLRWNREXFVML" class="offer-cta" target="_blank" rel="noopener">Choisir cette formule</a>
       </div>
+
       <div class="offer-card fade-up">
         <div class="offer-title">Optimisation de votre profil LinkedIn</div>
         <div class="offer-price">30 <span>€</span></div>
@@ -418,9 +431,17 @@ img{max-width:100%;display:block}a{text-decoration:none;color:inherit}ul{list-st
         <a href="https://www.paypal.com/ncp/payment/GTLRWNREXFVML" class="offer-cta" target="_blank" rel="noopener">Accéder à cette optimisation</a>
       </div>
     </div>
+
     <div class="comparison-wrapper fade-up">
       <table class="comparison-table">
-        <thead><tr><th></th><th class="highlight-col">Pack total — 45 €</th><th>CV + Lettre — 30 €</th><th>LinkedIn — 30 €</th></tr></thead>
+        <thead>
+          <tr>
+            <th></th>
+            <th class="highlight-col">Pack total — 45 €</th>
+            <th>CV + Lettre — 30 €</th>
+            <th>LinkedIn — 30 €</th>
+          </tr>
+        </thead>
         <tbody>
           <tr><td>CV refondu</td><td class="highlight-col"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3DA1DB" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></td><td><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3DA1DB" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></td><td style="color:var(--slate)">—</td></tr>
           <tr><td>Lettre de motivation</td><td class="highlight-col"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3DA1DB" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></td><td><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3DA1DB" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></td><td style="color:var(--slate)">—</td></tr>
@@ -469,6 +490,7 @@ img{max-width:100%;display:block}a{text-decoration:none;color:inherit}ul{list-st
     <div class="section-eyebrow">Retours clients</div>
     <h2 class="section-title">Ce que nos clients apprécient</h2>
     <p class="section-subtitle">Une présentation sobre et élégante de retours clients, pensée pour renforcer la crédibilité et valoriser l'expérience Talentiques.</p>
+    <div class="testimonials-note-wrapper"><div class="testimonials-note">Exemples de mise en forme visuelle — à remplacer par des avis clients réels.</div></div>
     <div class="testimonials-grid">
       <div class="testimonial-card fade-up"><div class="testimonial-quote">"</div><p class="testimonial-text">L'accompagnement a permis de clarifier mon positionnement. Mon CV est désormais plus lisible et mon profil LinkedIn bien plus cohérent avec mes objectifs professionnels.</p><div class="testimonial-author"><div class="testimonial-avatar">CM</div><div><div class="testimonial-name">Claire Moreau</div><div class="testimonial-role">Chargée de communication — France</div></div></div></div>
       <div class="testimonial-card fade-up"><div class="testimonial-quote">"</div><p class="testimonial-text">Un travail structuré et professionnel. La refonte de mon CV m'a donné une bien meilleure confiance pour postuler à des postes de consultant senior.</p><div class="testimonial-author"><div class="testimonial-avatar">JR</div><div><div class="testimonial-name">Julien Renaud</div><div class="testimonial-role">Consultant IT — Suisse</div></div></div></div>
@@ -540,12 +562,43 @@ img{max-width:100%;display:block}a{text-decoration:none;color:inherit}ul{list-st
 </footer>
 
 <script>
-function toggleMobile(){document.getElementById('mobileMenu').classList.toggle('active')}
-function closeMobile(){document.getElementById('mobileMenu').classList.remove('active')}
-function toggleFaq(btn){const item=btn.parentElement,answer=item.querySelector('.faq-answer'),isActive=item.classList.contains('active');document.querySelectorAll('.faq-item').forEach(i=>{i.classList.remove('active');i.querySelector('.faq-answer').style.maxHeight=null});if(!isActive){item.classList.add('active');answer.style.maxHeight=answer.scrollHeight+'px'}}
-document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',function(e){const t=document.querySelector(this.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}})});
-window.addEventListener('scroll',()=>{const h=document.getElementById('header');h.style.boxShadow=window.pageYOffset>80?'0 2px 20px rgba(0,0,0,0.3)':'none'});
-const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+function toggleFaq(btn){
+  const item = btn.parentElement,
+        answer = item.querySelector('.faq-answer'),
+        isActive = item.classList.contains('active');
+
+  document.querySelectorAll('.faq-item').forEach(i=>{
+    i.classList.remove('active');
+    i.querySelector('.faq-answer').style.maxHeight = null;
+  });
+
+  if(!isActive){
+    item.classList.add('active');
+    answer.style.maxHeight = answer.scrollHeight + 'px';
+  }
+}
+
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',function(e){
+    const t = document.querySelector(this.getAttribute('href'));
+    if(t){
+      e.preventDefault();
+      t.scrollIntoView({behavior:'smooth',block:'start'});
+    }
+  });
+});
+
+window.addEventListener('scroll',()=>{
+  const h = document.getElementById('header');
+  h.style.boxShadow = window.pageYOffset > 80 ? '0 2px 20px rgba(0,0,0,0.3)' : 'none';
+});
+
+const obs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting) e.target.classList.add('visible');
+  });
+},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+
 document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
 </script>
 </body>
