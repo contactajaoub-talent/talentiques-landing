@@ -630,12 +630,10 @@ textarea.form-control{resize:vertical;min-height:80px;line-height:1.6}
     <!-- Formulaire Salesforce Web-to-Lead — Org ID: 00DQH00000KIbYh -->
     <form id="sf-form"
           action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8"
-          method="POST"
-          target="sf-hidden-frame"
-          onsubmit="handleFormSubmit(event)">
+          method="POST">
 
       <input type="hidden" name="oid"          value="00DQH00000KIbYh">
-      <input type="hidden" name="retURL"        value="https://offerstalentiques.space">
+      <input type="hidden" name="retURL" id="sf-returl" value="https://offerstalentiques.space">
       <input type="hidden" name="lead_source"   value="Site web Talentiques">
       <input type="hidden" name="company"       value="Particulier">
       <input type="hidden" name="description"   id="sf-description" value="">
@@ -693,7 +691,7 @@ textarea.form-control{resize:vertical;min-height:80px;line-height:1.6}
         <textarea id="sf-infos" class="form-control" rows="3" placeholder="Partagez toute information utile : secteur visé, expérience, contraintes particulières…"></textarea>
       </div>
 
-      <button type="submit" class="modal-submit" id="modalSubmitBtn">
+      <button type="submit" class="modal-submit" id="modalSubmitBtn" onclick="prepareSubmit()">
         Continuer vers le paiement
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M7 7h10v10"/></svg>
       </button>
@@ -793,10 +791,11 @@ function openModal(paypalUrl, offerName, offerPrice) {
   _paypalUrl = paypalUrl;
   document.getElementById('modalOfferName').textContent = offerName;
   document.getElementById('modalOfferPrice').textContent = offerPrice;
+  /* Mettre le lien PayPal dans retURL — Salesforce redirigera vers ce lien */
+  document.getElementById('sf-returl').value = paypalUrl;
   document.getElementById('contactModal').classList.add('active');
   document.body.style.overflow = 'hidden';
   document.querySelector('.modal-box').scrollTop = 0;
-  /* Réinitialiser bouton */
   var btn = document.getElementById('modalSubmitBtn');
   btn.disabled = false;
   btn.innerHTML = 'Continuer vers le paiement <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M7 7h10v10"/></svg>';
@@ -818,14 +817,11 @@ document.addEventListener('keydown', function(e) {
 });
 
 /* ============================================
-   SOUMISSION FORMULAIRE
-   1. Construit le champ description Salesforce
-   2. Soumet le formulaire en silence vers l'iframe
-   3. Redirige vers PayPal après 900ms
+   SOUMISSION — méthode native Web-to-Lead
+   Salesforce reçoit le POST et redirige vers
+   le retURL (PayPal) automatiquement
    ============================================ */
-function handleFormSubmit(e) {
-  e.preventDefault();
-
+function prepareSubmit() {
   var objectif  = document.getElementById('sf-objectif').value.trim();
   var urgence   = document.getElementById('sf-urgence').value;
   var infos     = document.getElementById('sf-infos').value.trim();
@@ -838,24 +834,6 @@ function handleFormSubmit(e) {
   desc += 'Urgence : ' + urgence + '\n';
   if (infos) desc += 'Infos : ' + infos;
   document.getElementById('sf-description').value = desc;
-
-  var btn = document.getElementById('modalSubmitBtn');
-  btn.disabled = true;
-  btn.textContent = 'Traitement en cours…';
-
-  var formData = new FormData(document.getElementById('sf-form'));
-
-  fetch('https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8', {
-    method: 'POST',
-    mode: 'no-cors',
-    body: formData
-  })
-  .then(function() {
-    window.location.href = _paypalUrl;
-  })
-  .catch(function() {
-    window.location.href = _paypalUrl;
-  });
 }
 </script>
 </body>
