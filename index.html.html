@@ -672,12 +672,12 @@ textarea.form-control{resize:vertical;min-height:80px;line-height:1.6}
 
       <div class="form-group">
         <label for="sf-objectif">Objectif professionnel <span class="req">*</span></label>
-        <textarea id="sf-objectif" class="form-control" rows="3" required placeholder="Ex : Obtenir un poste de chef de projet dans le secteur tech, reconversion vers la finance…"></textarea>
+        <textarea id="sf-objectif" name="00NQH00000blah" class="form-control" rows="3" required placeholder="Ex : Obtenir un poste de chef de projet dans le secteur tech, reconversion vers la finance…"></textarea>
       </div>
 
       <div class="form-group">
         <label for="sf-urgence">Niveau d'urgence <span class="req">*</span></label>
-        <select id="sf-urgence" class="form-control" required>
+        <select id="sf-urgence" name="sf-urgence-val" class="form-control" required>
           <option value="" disabled selected>Sélectionnez un délai</option>
           <option value="Tres urgent moins d1 semaine">Très urgent — moins d'1 semaine</option>
           <option value="Urgent dans les 2 semaines">Urgent — dans les 2 semaines</option>
@@ -688,10 +688,10 @@ textarea.form-control{resize:vertical;min-height:80px;line-height:1.6}
 
       <div class="form-group">
         <label for="sf-infos">Informations complémentaires</label>
-        <textarea id="sf-infos" class="form-control" rows="3" placeholder="Partagez toute information utile : secteur visé, expérience, contraintes particulières…"></textarea>
+        <textarea id="sf-infos" name="sf-infos-val" class="form-control" rows="3" placeholder="Partagez toute information utile : secteur visé, expérience, contraintes particulières…"></textarea>
       </div>
 
-      <button type="submit" class="modal-submit" id="modalSubmitBtn" onclick="prepareSubmit()">
+      <button type="submit" class="modal-submit" id="modalSubmitBtn">
         Continuer vers le paiement
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M7 7h10v10"/></svg>
       </button>
@@ -819,9 +819,12 @@ document.addEventListener('keydown', function(e) {
 /* ============================================
    SOUMISSION — méthode native Web-to-Lead
    Salesforce reçoit le POST et redirige vers
-   le retURL (PayPal) automatiquement
+   le retURL (PayPal) automatiquement.
+   Le listener sur le form garantit que le champ
+   description est rempli AVANT l'envoi, quelle
+   que soit la vitesse du navigateur.
    ============================================ */
-function prepareSubmit() {
+document.getElementById('sf-form').addEventListener('submit', function() {
   var objectif  = document.getElementById('sf-objectif').value.trim();
   var urgence   = document.getElementById('sf-urgence').value;
   var infos     = document.getElementById('sf-infos').value.trim();
@@ -834,7 +837,12 @@ function prepareSubmit() {
   desc += 'Urgence : ' + urgence + '\n';
   if (infos) desc += 'Infos : ' + infos;
   document.getElementById('sf-description').value = desc;
-}
+
+  /* Désactiver le bouton pour éviter double-envoi */
+  var btn = document.getElementById('modalSubmitBtn');
+  btn.disabled = true;
+  btn.textContent = 'Envoi en cours…';
+});
 </script>
 </body>
 </html>
