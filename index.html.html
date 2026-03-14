@@ -288,8 +288,9 @@ textarea.form-control{resize:vertical;min-height:80px;line-height:1.6}
 }
 @media(max-width:480px){.deliverables-grid{grid-template-columns:1fr}.problem-visual{grid-template-columns:1fr 1fr}}
 
-.fade-up{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease}
-.fade-up.visible{opacity:1;transform:translateY(0)}
+.fade-up{opacity:1;transform:translateY(0);transition:opacity 0.7s ease,transform 0.7s ease}
+.js-ready .fade-up{opacity:0;transform:translateY(24px)}
+.js-ready .fade-up.visible{opacity:1;transform:translateY(0)}
 </style>
 </head>
 <body>
@@ -752,10 +753,12 @@ window.addEventListener('scroll',()=>{
 });
 
 /* ---- Fade-up observer ---- */
+document.documentElement.classList.add('js-ready');
 const obs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})
-},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}})
+},{threshold:0.05,rootMargin:'0px 0px -10px 0px'});
 document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+setTimeout(()=>{document.querySelectorAll('.fade-up').forEach(el=>el.classList.add('visible'))},1200);
 
 /* ==================================================
    MODAL — Formulaire avant paiement
