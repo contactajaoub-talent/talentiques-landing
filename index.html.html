@@ -608,8 +608,6 @@ textarea.form-control{resize:vertical;min-height:80px;line-height:1.6}
   </div>
 </footer>
 
-<!-- iframe cachée : absorbe la réponse Salesforce sans quitter la page -->
-<iframe name="sf-hidden-frame" id="sf-hidden-frame" style="display:none" aria-hidden="true"></iframe>
 
 <!-- MODAL FORMULAIRE -->
 <div class="modal-backdrop" id="contactModal">
@@ -658,26 +656,26 @@ textarea.form-control{resize:vertical;min-height:80px;line-height:1.6}
         <label for="sf-country">Pays <span class="req">*</span></label>
         <select id="sf-country" name="country" class="form-control" required>
           <option value="" disabled selected>Sélectionnez votre pays</option>
-          <option>France</option>
-          <option>Belgique</option>
-          <option>Suisse</option>
-          <option>Canada</option>
-          <option>Maroc</option>
-          <option>Algérie</option>
-          <option>Tunisie</option>
-          <option>Luxembourg</option>
-          <option>Autre</option>
+          <option value="France">France</option>
+          <option value="Belgium">Belgique</option>
+          <option value="Switzerland">Suisse</option>
+          <option value="Canada">Canada</option>
+          <option value="Morocco">Maroc</option>
+          <option value="Algeria">Algérie</option>
+          <option value="Tunisia">Tunisie</option>
+          <option value="Luxembourg">Luxembourg</option>
+          <option value="Other">Autre</option>
         </select>
       </div>
 
       <div class="form-group">
         <label for="sf-objectif">Objectif professionnel <span class="req">*</span></label>
-        <textarea id="sf-objectif" name="00NQH00000blah" class="form-control" rows="3" required placeholder="Ex : Obtenir un poste de chef de projet dans le secteur tech, reconversion vers la finance…"></textarea>
+        <textarea id="sf-objectif" class="form-control" rows="3" required placeholder="Ex : Obtenir un poste de chef de projet dans le secteur tech, reconversion vers la finance…"></textarea>
       </div>
 
       <div class="form-group">
         <label for="sf-urgence">Niveau d'urgence <span class="req">*</span></label>
-        <select id="sf-urgence" name="sf-urgence-val" class="form-control" required>
+        <select id="sf-urgence" class="form-control" required>
           <option value="" disabled selected>Sélectionnez un délai</option>
           <option value="Tres urgent moins d1 semaine">Très urgent — moins d'1 semaine</option>
           <option value="Urgent dans les 2 semaines">Urgent — dans les 2 semaines</option>
@@ -688,7 +686,7 @@ textarea.form-control{resize:vertical;min-height:80px;line-height:1.6}
 
       <div class="form-group">
         <label for="sf-infos">Informations complémentaires</label>
-        <textarea id="sf-infos" name="sf-infos-val" class="form-control" rows="3" placeholder="Partagez toute information utile : secteur visé, expérience, contraintes particulières…"></textarea>
+        <textarea id="sf-infos" class="form-control" rows="3" placeholder="Partagez toute information utile : secteur visé, expérience, contraintes particulières…"></textarea>
       </div>
 
       <button type="submit" class="modal-submit" id="modalSubmitBtn">
