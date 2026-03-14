@@ -582,7 +582,7 @@ textarea.form-control{resize:vertical;min-height:80px;line-height:1.6}
       <h2 class="section-title">Une question ?</h2>
       <p class="contact-text">Une question avant de démarrer ? Contactez-nous pour être orienté vers l'offre la plus adaptée.</p>
       <div class="contact-methods">
-        <a href="mailto:talentiques@gmail.com" class="contact-method"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>talentiques@gmail.com</a>
+        <a href="/cdn-cgi/l/email-protection#f084919c959e849981859583b0979d91999cde939f9d" class="contact-method"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><span class="__cf_email__" data-cfemail="6612070a0308120f1713031526010b070f0a4805090b">[email&#160;protected]</span></a>
         <a href="https://wa.me/212663039597" class="contact-method" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>+212 663 039 597</a>
       </div>
     </div>
@@ -598,7 +598,7 @@ textarea.form-control{resize:vertical;min-height:80px;line-height:1.6}
         <p>Valorisation de l'image professionnelle. Des supports clairs, cohérents et crédibles pour renforcer votre positionnement sur le marché.</p>
       </div>
       <div class="footer-col"><h4>Navigation</h4><a href="#mission">Mission</a><a href="#offres">Offres</a><a href="#methode">Méthode</a><a href="#avis">Avis</a><a href="#faq">FAQ</a></div>
-      <div class="footer-col"><h4>Contact</h4><a href="mailto:talentiques@gmail.com">talentiques@gmail.com</a><a href="https://wa.me/212663039597">+212 663 039 597</a></div>
+      <div class="footer-col"><h4>Contact</h4><a href="/cdn-cgi/l/email-protection#cbbfaaa7aea5bfa2babeaeb88baca6aaa2a7e5a8a4a6"><span class="__cf_email__" data-cfemail="285c49444d465c41595d4d5b684f45494144064b4745">[email&#160;protected]</span></a><a href="https://wa.me/212663039597">+212 663 039 597</a></div>
       <div class="footer-col"><h4>Legal</h4><a href="#">Mentions légales</a><a href="#">Conditions générales</a><a href="#">Politique de confidentialité</a></div>
     </div>
     <div class="footer-bottom">
@@ -661,42 +661,14 @@ textarea.form-control{resize:vertical;min-height:80px;line-height:1.6}
         <select id="sf-country" name="country" class="form-control" required>
           <option value="" disabled selected>Sélectionnez votre pays</option>
           <option>France</option>
-<option>Belgique</option>
-<option>Suisse</option>
-<option>Canada</option>
-<option>Luxembourg</option>
-<option>Monaco</option>
-
-<option>Maroc</option>
-<option>Algérie</option>
-<option>Tunisie</option>
-<option>Sénégal</option>
-<option>Côte d’Ivoire</option>
-<option>Cameroun</option>
-<option>Burkina Faso</option>
-<option>Mali</option>
-<option>Niger</option>
-<option>Togo</option>
-<option>Bénin</option>
-<option>Guinée</option>
-<option>Guinée-Bissau</option>
-<option>République démocratique du Congo</option>
-<option>République du Congo</option>
-<option>Gabon</option>
-<option>Tchad</option>
-<option>Centrafrique</option>
-<option>Djibouti</option>
-<option>Madagascar</option>
-<option>Comores</option>
-<option>Seychelles</option>
-<option>Maurice</option>
-<option>Mauritanie</option>
-<option>Rwanda</option>
-<option>Burundi</option>
-<option>Haïti</option>
-<option>Vanuatu</option>
-          
-<option>Autre</option>
+          <option>Belgique</option>
+          <option>Suisse</option>
+          <option>Canada</option>
+          <option>Maroc</option>
+          <option>Algérie</option>
+          <option>Tunisie</option>
+          <option>Luxembourg</option>
+          <option>Autre</option>
         </select>
       </div>
 
@@ -734,7 +706,7 @@ textarea.form-control{resize:vertical;min-height:80px;line-height:1.6}
   </div>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 /* ============================================
    VARIABLES
    ============================================ */
@@ -852,6 +824,8 @@ document.addEventListener('keydown', function(e) {
    3. Redirige vers PayPal après 900ms
    ============================================ */
 function handleFormSubmit(e) {
+  e.preventDefault();
+
   var objectif  = document.getElementById('sf-objectif').value.trim();
   var urgence   = document.getElementById('sf-urgence').value;
   var infos     = document.getElementById('sf-infos').value.trim();
@@ -865,17 +839,23 @@ function handleFormSubmit(e) {
   if (infos) desc += 'Infos : ' + infos;
   document.getElementById('sf-description').value = desc;
 
-  /* Désactiver le bouton */
   var btn = document.getElementById('modalSubmitBtn');
   btn.disabled = true;
-  btn.textContent = 'Traitement en cours...';
+  btn.textContent = 'Traitement en cours…';
 
-  /* Soumettre silencieusement vers Salesforce (target=iframe)
-     puis rediriger vers PayPal */
-  setTimeout(function() {
+  var formData = new FormData(document.getElementById('sf-form'));
+
+  fetch('https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8', {
+    method: 'POST',
+    mode: 'no-cors',
+    body: formData
+  })
+  .then(function() {
     window.location.href = _paypalUrl;
-  }, 900);
-  /* Pas de e.preventDefault() — la soumission native vers l'iframe se fait */
+  })
+  .catch(function() {
+    window.location.href = _paypalUrl;
+  });
 }
 </script>
 </body>
