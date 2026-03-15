@@ -918,6 +918,13 @@ document.addEventListener('DOMContentLoaded', function() {
       document.getElementById('diag-description').value = desc;
       var btn = document.getElementById('diagSubmitBtn');
       if (btn) { btn.disabled = true; btn.textContent = 'Envoi en cours\u2026'; }
+      /* Afficher le message de confirmation après un délai */
+      setTimeout(function() {
+        var formEl = document.getElementById('diag-form');
+        var confirmEl = document.getElementById('diag-confirm');
+        if (formEl) formEl.style.display = 'none';
+        if (confirmEl) confirmEl.style.display = 'flex';
+      }, 1800);
     });
   }
 
@@ -1049,6 +1056,22 @@ document.addEventListener('DOMContentLoaded', function() {
         Rapport envoy&eacute; sous 24h &agrave; votre adresse e-mail &mdash; 100% gratuit, sans engagement.
       </p>
     </form>
+
+    <!-- MESSAGE DE CONFIRMATION -->
+    <div id="diag-confirm" style="display:none;flex-direction:column;align-items:center;text-align:center;padding:20px 0">
+      <div style="width:72px;height:72px;border-radius:50%;background:rgba(6,131,201,0.1);border:2px solid rgba(6,131,201,0.25);display:flex;align-items:center;justify-content:center;margin:0 auto 24px">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0683C9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      </div>
+      <h3 style="font-size:20px;font-weight:800;color:#0B1A2F;margin-bottom:12px;letter-spacing:-0.02em">Votre dossier est bien re&ccedil;u !</h3>
+      <p style="font-size:15px;color:#4A607A;line-height:1.7;margin-bottom:8px">Nous allons analyser votre profil avec attention.</p>
+      <p style="font-size:15px;color:#4A607A;line-height:1.7;margin-bottom:28px">Vous recevrez votre <strong style="color:#0683C9">rapport d'&eacute;volution professionnelle personnalis&eacute;</strong> par e-mail <strong style="color:#0B1A2F">dans les 24 heures</strong>.</p>
+      <div style="background:rgba(6,131,201,0.06);border:1px solid rgba(6,131,201,0.15);border-radius:10px;padding:14px 20px;font-size:13px;color:#4A607A;line-height:1.6;margin-bottom:28px;max-width:100%">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#0683C9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;display:inline;vertical-align:middle;margin-right:6px"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Pensez &agrave; v&eacute;rifier vos spams si vous ne recevez pas notre e-mail.
+      </div>
+      <button onclick="closeDiagModal()" style="background:linear-gradient(135deg,#0683C9,#056BA5);color:#fff;padding:14px 36px;border-radius:12px;font-size:15px;font-weight:700;border:none;cursor:pointer;font-family:inherit;box-shadow:0 4px 20px rgba(6,131,201,0.28)">Fermer</button>
+    </div>
+
   </div>
 </div>
 
