@@ -906,7 +906,9 @@ document.addEventListener('DOMContentLoaded', function() {
   /* Diagnostic form submit */
   var diagForm = document.getElementById('diag-form');
   if (diagForm) {
-    diagForm.addEventListener('submit', function() {
+    diagForm.addEventListener('submit', function(e) {
+      e.preventDefault(); /* Bloquer la navigation — on gère tout en JS */
+
       var objectif = document.getElementById('diag-objectif').value.trim();
       var linkedin = document.getElementById('diag-linkedin').value.trim();
       var infos    = document.getElementById('diag-infos').value.trim();
@@ -916,15 +918,23 @@ document.addEventListener('DOMContentLoaded', function() {
       desc += 'Objectif : ' + objectif + '\n';
       if (infos) desc += 'Infos : ' + infos;
       document.getElementById('diag-description').value = desc;
+
       var btn = document.getElementById('diagSubmitBtn');
       if (btn) { btn.disabled = true; btn.textContent = 'Envoi en cours\u2026'; }
-      /* Afficher le message de confirmation après un délai */
-      setTimeout(function() {
+
+      /* Envoyer à Salesforce via fetch (no-cors = pas de CORS error) */
+      var formData = new FormData(diagForm);
+      fetch('https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8', {
+        method: 'POST',
+        mode: 'no-cors',
+        body: formData
+      }).finally(function() {
+        /* Afficher le message de confirmation quelle que soit la réponse */
         var formEl = document.getElementById('diag-form');
         var confirmEl = document.getElementById('diag-confirm');
         if (formEl) formEl.style.display = 'none';
         if (confirmEl) confirmEl.style.display = 'flex';
-      }, 1800);
+      });
     });
   }
 
