@@ -906,9 +906,8 @@ document.addEventListener('DOMContentLoaded', function() {
   /* Diagnostic form submit */
   var diagForm = document.getElementById('diag-form');
   if (diagForm) {
-    diagForm.addEventListener('submit', function(e) {
-      e.preventDefault(); /* Bloquer la navigation — on gère tout en JS */
-
+    diagForm.addEventListener('submit', function() {
+      /* Pas de e.preventDefault() — soumission native vers l'iframe cachée */
       var objectif = document.getElementById('diag-objectif').value.trim();
       var linkedin = document.getElementById('diag-linkedin').value.trim();
       var infos    = document.getElementById('diag-infos').value.trim();
@@ -922,19 +921,14 @@ document.addEventListener('DOMContentLoaded', function() {
       var btn = document.getElementById('diagSubmitBtn');
       if (btn) { btn.disabled = true; btn.textContent = 'Envoi en cours\u2026'; }
 
-      /* Envoyer à Salesforce via fetch (no-cors = pas de CORS error) */
-      var formData = new FormData(diagForm);
-      fetch('https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8', {
-        method: 'POST',
-        mode: 'no-cors',
-        body: formData
-      }).finally(function() {
-        /* Afficher le message de confirmation quelle que soit la réponse */
+      /* Afficher la confirmation après 1.2s
+         (le form se soumet vers l'iframe, la page ne navigue pas) */
+      setTimeout(function() {
         var formEl = document.getElementById('diag-form');
         var confirmEl = document.getElementById('diag-confirm');
         if (formEl) formEl.style.display = 'none';
         if (confirmEl) confirmEl.style.display = 'flex';
-      });
+      }, 1200);
     });
   }
 
@@ -962,6 +956,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 });
 </script>
+
+<!-- iframe cachée pour soumission diagnostic sans quitter la page -->
+<iframe name="diag-hidden-frame" id="diag-hidden-frame" style="display:none" aria-hidden="true"></iframe>
 
 <!-- MODAL DIAGNOSTIC GRATUIT -->
 <div class="modal-backdrop" id="diagModal">
@@ -991,7 +988,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     <form id="diag-form"
           action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8"
-          method="POST">
+          method="POST"
+          target="diag-hidden-frame">
 
       <input type="hidden" name="oid"         value="00DQH00000LGRD3">
       <input type="hidden" name="retURL"      value="https://offerstalentiques.space">
