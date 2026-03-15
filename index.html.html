@@ -306,6 +306,27 @@ textarea.form-control{resize:vertical;min-height:80px;line-height:1.6}
 .fade-up{opacity:1;transform:translateY(0);transition:opacity 0.7s ease,transform 0.7s ease}
 .js-ready .fade-up{opacity:0;transform:translateY(24px)}
 .js-ready .fade-up.visible{opacity:1;transform:translateY(0)}
+
+/* DIAGNOSTIC BUTTON */
+.btn-diag{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--blue);padding:16px 36px;border-radius:12px;font-size:15px;font-weight:700;border:2px solid var(--blue);cursor:pointer;transition:var(--transition);font-family:var(--font)}
+.btn-diag:hover{background:var(--blue);color:var(--white);transform:translateY(-2px);box-shadow:0 8px 32px rgba(6,131,201,0.28)}
+.nav-diag{background:transparent;color:var(--blue)!important;padding:10px 24px;border-radius:10px;font-size:14px!important;font-weight:600!important;border:1.5px solid var(--blue)!important;transition:var(--transition)}
+.nav-diag:hover{background:var(--blue);color:var(--white)!important;transform:translateY(-1px)}
+
+/* DIAGNOSTIC MODAL HEADER */
+.diag-banner{background:linear-gradient(135deg,rgba(6,131,201,0.07) 0%,rgba(6,131,201,0.03) 100%);border:1px solid rgba(6,131,201,0.15);border-radius:12px;padding:16px 20px;margin-bottom:20px;display:flex;gap:14px;align-items:flex-start}
+.diag-banner-icon{width:40px;height:40px;border-radius:10px;background:rgba(6,131,201,0.1);border:1px solid rgba(6,131,201,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.diag-banner-icon svg{width:20px;height:20px;color:var(--blue)}
+.diag-banner-title{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:4px}
+.diag-banner-text{font-size:13px;color:var(--text-sub);line-height:1.55}
+.diag-banner-text strong{color:var(--blue)}
+
+/* FILE UPLOAD */
+.file-upload-label{display:flex;align-items:center;gap:10px;padding:12px 16px;background:var(--bg-alt);border:1.5px dashed var(--border);border-radius:10px;cursor:pointer;transition:var(--transition);font-size:14px;color:var(--text-muted)}
+.file-upload-label:hover{border-color:var(--blue);background:rgba(6,131,201,0.04);color:var(--blue)}
+.file-upload-label svg{width:18px;height:18px;flex-shrink:0}
+.file-upload-input{display:none}
+.file-name-display{font-size:12px;color:var(--blue);margin-top:5px;font-weight:500;min-height:16px}
 </style>
 </head>
 <body>
@@ -321,6 +342,7 @@ textarea.form-control{resize:vertical;min-height:80px;line-height:1.6}
       <a href="#avis">Avis</a>
       <a href="#faq">FAQ</a>
       <a href="#contact">Contact</a>
+      <button class="nav-diag" onclick="openDiagModal()">Diagnostic Gratuit</button>
       <a href="#offres" class="nav-cta">Choisir mon offre</a>
     </nav>
     <button class="mobile-toggle" id="mobileToggle" onclick="toggleMobile()" aria-label="Menu">
@@ -336,6 +358,7 @@ textarea.form-control{resize:vertical;min-height:80px;line-height:1.6}
   <a href="#avis" onclick="closeMobile()">Avis</a>
   <a href="#faq" onclick="closeMobile()">FAQ</a>
   <a href="#contact" onclick="closeMobile()">Contact</a>
+  <button class="nav-diag" onclick="closeMobile();openDiagModal()" style="margin-top:16px;width:100%;text-align:center;border-bottom:none;padding:16px">Diagnostic Gratuit</button>
   <a href="#offres" class="nav-cta" onclick="closeMobile()">Choisir mon offre</a>
 </nav>
 
@@ -346,8 +369,8 @@ textarea.form-control{resize:vertical;min-height:80px;line-height:1.6}
     <h1>Valorisez votre <span class="accent">image professionnelle.</span> Donnez plus de force à votre CV, LinkedIn et candidature.</h1>
     <p class="hero-sub">Talentiques vous aide à construire une image claire, cohérente et crédible pour renforcer votre positionnement et attirer plus d'opportunités professionnelles, en France, en Suisse, en Belgique, au Canada et à l'international.</p>
     <div class="hero-ctas">
-      <a href="#offres" class="btn-primary">Accéder aux offres <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M7 7h10v10"/></svg></a>
-      <a href="#methode" class="btn-secondary">Découvrir notre méthode</a>
+      <button class="btn-primary" onclick="openDiagModal()">Diagnostic Gratuit <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M7 7h10v10"/></svg></button>
+      <a href="#offres" class="btn-secondary">Voir nos offres</a>
     </div>
     <div class="hero-trust">
       <div class="trust-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Livraison rapide</div>
@@ -682,6 +705,21 @@ textarea.form-control{resize:vertical;min-height:80px;line-height:1.6}
       </div>
 
       <div class="form-group">
+        <label for="sf-linkedin">Profil LinkedIn</label>
+        <input type="url" id="sf-linkedin" class="form-control" placeholder="https://linkedin.com/in/votre-profil">
+      </div>
+
+      <div class="form-group">
+        <label>Télécharger votre CV (PDF ou Word)</label>
+        <label class="file-upload-label" for="sf-cv-upload">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          <span id="sf-cv-label">Cliquez pour sélectionner votre CV</span>
+        </label>
+        <input type="file" id="sf-cv-upload" class="file-upload-input" accept=".pdf,.doc,.docx" onchange="updateFileName('sf-cv-upload','sf-cv-label','sf-cv-name')">
+        <div class="file-name-display" id="sf-cv-name"></div>
+      </div>
+
+      <div class="form-group">
         <label for="sf-objectif">Objectif professionnel <span class="req">*</span></label>
         <textarea id="sf-objectif" class="form-control" rows="3" required placeholder="Ex : Obtenir un poste de chef de projet dans le secteur tech, reconversion vers la finance…"></textarea>
       </div>
@@ -817,43 +855,202 @@ function closeModal() {
   document.body.style.overflow = '';
 }
 
-/* Fermer en cliquant sur le fond */
-document.getElementById('contactModal').addEventListener('click', function(e) {
-  if (e.target === this) closeModal();
-});
-
 /* Fermer avec Échap */
 document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') closeModal();
+  if (e.key === 'Escape') { closeModal(); closeDiagModal(); }
 });
 
 /* ============================================
-   SOUMISSION — méthode native Web-to-Lead
-   Salesforce reçoit le POST et redirige vers
-   le retURL (PayPal) automatiquement.
-   Le listener sur le form garantit que le champ
-   description est rempli AVANT l'envoi, quelle
-   que soit la vitesse du navigateur.
+   DIAGNOSTIC MODAL
    ============================================ */
-document.getElementById('sf-form').addEventListener('submit', function() {
-  var objectif  = document.getElementById('sf-objectif').value.trim();
-  var urgence   = document.getElementById('sf-urgence').value;
-  var infos     = document.getElementById('sf-infos').value.trim();
-  var offerName = document.getElementById('modalOfferName').textContent;
-  var offerPrice = document.getElementById('modalOfferPrice').textContent;
+function openDiagModal() {
+  var m = document.getElementById('diagModal');
+  if (m) { m.classList.add('active'); document.body.style.overflow = 'hidden'; }
+  var box = document.getElementById('diag-modal-box');
+  if (box) box.scrollTop = 0;
+  var btn = document.getElementById('diagSubmitBtn');
+  if (btn) {
+    btn.disabled = false;
+    btn.innerHTML = 'Recevoir mon diagnostic gratuit <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M7 7h10v10"/></svg>';
+  }
+}
+function closeDiagModal() {
+  var m = document.getElementById('diagModal');
+  if (m) m.classList.remove('active');
+  document.body.style.overflow = '';
+}
 
-  var desc = '';
-  desc += 'Offre : ' + offerName + ' (' + offerPrice + ')\n';
-  desc += 'Objectif : ' + objectif + '\n';
-  desc += 'Urgence : ' + urgence + '\n';
-  if (infos) desc += 'Infos : ' + infos;
-  document.getElementById('sf-description').value = desc;
+function updateFileName(inputId, labelId, nameId) {
+  var input = document.getElementById(inputId);
+  var label = document.getElementById(labelId);
+  var nameEl = document.getElementById(nameId);
+  if (input && input.files && input.files[0]) {
+    var fname = input.files[0].name;
+    if (nameEl) nameEl.textContent = '✓ ' + fname;
+    if (label) label.textContent = fname;
+  }
+}
 
-  /* Désactiver le bouton pour éviter double-envoi */
-  var btn = document.getElementById('modalSubmitBtn');
-  btn.disabled = true;
-  btn.textContent = 'Envoi en cours…';
+/* ============================================
+   LISTENERS DOM — dans DOMContentLoaded
+   pour éviter null sur éléments pas encore chargés
+   ============================================ */
+document.addEventListener('DOMContentLoaded', function() {
+
+  /* Fermer modals en cliquant sur le fond */
+  var cm = document.getElementById('contactModal');
+  if (cm) cm.addEventListener('click', function(e) { if (e.target === this) closeModal(); });
+  var dm = document.getElementById('diagModal');
+  if (dm) dm.addEventListener('click', function(e) { if (e.target === this) closeDiagModal(); });
+
+  /* Diagnostic form submit */
+  var diagForm = document.getElementById('diag-form');
+  if (diagForm) {
+    diagForm.addEventListener('submit', function() {
+      var objectif = document.getElementById('diag-objectif').value.trim();
+      var linkedin = document.getElementById('diag-linkedin').value.trim();
+      var infos    = document.getElementById('diag-infos').value.trim();
+      var desc = '';
+      desc += 'TYPE : DIAGNOSTIC GRATUIT\n';
+      if (linkedin) desc += 'LinkedIn : ' + linkedin + '\n';
+      desc += 'Objectif : ' + objectif + '\n';
+      if (infos) desc += 'Infos : ' + infos;
+      document.getElementById('diag-description').value = desc;
+      var btn = document.getElementById('diagSubmitBtn');
+      if (btn) { btn.disabled = true; btn.textContent = 'Envoi en cours\u2026'; }
+    });
+  }
+
+  /* Paiement form submit */
+  var sfForm = document.getElementById('sf-form');
+  if (sfForm) {
+    sfForm.addEventListener('submit', function() {
+      var objectif  = document.getElementById('sf-objectif').value.trim();
+      var urgence   = document.getElementById('sf-urgence').value;
+      var infos     = document.getElementById('sf-infos').value.trim();
+      var linkedin  = document.getElementById('sf-linkedin').value.trim();
+      var offerName = document.getElementById('modalOfferName').textContent;
+      var offerPrice = document.getElementById('modalOfferPrice').textContent;
+      var desc = '';
+      desc += 'Offre : ' + offerName + ' (' + offerPrice + ')\n';
+      if (linkedin) desc += 'LinkedIn : ' + linkedin + '\n';
+      desc += 'Objectif : ' + objectif + '\n';
+      desc += 'Urgence : ' + urgence + '\n';
+      if (infos) desc += 'Infos : ' + infos;
+      document.getElementById('sf-description').value = desc;
+      var btn = document.getElementById('modalSubmitBtn');
+      if (btn) { btn.disabled = true; btn.textContent = 'Envoi en cours\u2026'; }
+    });
+  }
+
 });
 </script>
+
+<!-- MODAL DIAGNOSTIC GRATUIT -->
+<div class="modal-backdrop" id="diagModal">
+  <div class="modal-box" id="diag-modal-box" role="dialog" aria-modal="true">
+
+    <button class="modal-close-btn" onclick="closeDiagModal()" aria-label="Fermer">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+
+    <div class="diag-banner">
+      <div class="diag-banner-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+      </div>
+      <div>
+        <div class="diag-banner-title">Diagnostic gratuit de votre candidature</div>
+        <div class="diag-banner-text">Remplissez ce formulaire et recevez <strong>sous 24h</strong> un rapport personnalisé d'évolution professionnelle : points forts, axes d'amélioration de votre CV, LinkedIn et stratégie de candidature.</div>
+      </div>
+    </div>
+
+    <div class="modal-offer-tag">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      Gratuit &mdash; sans engagement
+    </div>
+    <h2 class="modal-title">Obtenez votre diagnostic gratuit</h2>
+    <p class="modal-subtitle">Partagez votre profil. Nous analysons votre dossier et vous envoyons un rapport d'évolution sous 24h.</p>
+    <div class="modal-divider"></div>
+
+    <form id="diag-form"
+          action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8"
+          method="POST">
+
+      <input type="hidden" name="oid"         value="00DQH00000LGRD3">
+      <input type="hidden" name="retURL"      value="https://offerstalentiques.space">
+      <input type="hidden" name="lead_source" value="Diagnostic Gratuit Talentiques">
+      <input type="hidden" name="company"     value="Particulier">
+      <input type="hidden" name="description" id="diag-description" value="">
+
+      <div class="form-group">
+        <label for="diag-nom">Nom complet <span class="req">*</span></label>
+        <input type="text" id="diag-nom" name="last_name" class="form-control" placeholder="Ex : Marie Dupont" required autocomplete="name">
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="diag-email">Adresse e-mail <span class="req">*</span></label>
+          <input type="email" id="diag-email" name="email" class="form-control" placeholder="vous@email.com" required autocomplete="email">
+        </div>
+        <div class="form-group">
+          <label for="diag-phone">T&eacute;l&eacute;phone</label>
+          <input type="tel" id="diag-phone" name="phone" class="form-control" placeholder="+33 6 00 00 00 00" autocomplete="tel">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="diag-country">Pays <span class="req">*</span></label>
+        <select id="diag-country" name="country" class="form-control" required>
+          <option value="" disabled selected>S&eacute;lectionnez votre pays</option>
+          <option value="France">France</option>
+          <option value="Belgium">Belgique</option>
+          <option value="Switzerland">Suisse</option>
+          <option value="Canada">Canada</option>
+          <option value="Morocco">Maroc</option>
+          <option value="Algeria">Alg&eacute;rie</option>
+          <option value="Tunisia">Tunisie</option>
+          <option value="Luxembourg">Luxembourg</option>
+          <option value="Other">Autre</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="diag-linkedin">Profil LinkedIn</label>
+        <input type="url" id="diag-linkedin" class="form-control" placeholder="https://linkedin.com/in/votre-profil">
+      </div>
+
+      <div class="form-group">
+        <label>T&eacute;l&eacute;charger votre CV (PDF ou Word)</label>
+        <label class="file-upload-label" for="diag-cv-upload">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          <span id="diag-cv-label">Cliquez pour s&eacute;lectionner votre CV</span>
+        </label>
+        <input type="file" id="diag-cv-upload" class="file-upload-input" accept=".pdf,.doc,.docx" onchange="updateFileName('diag-cv-upload','diag-cv-label','diag-cv-name')">
+        <div class="file-name-display" id="diag-cv-name"></div>
+      </div>
+
+      <div class="form-group">
+        <label for="diag-objectif">Objectif professionnel <span class="req">*</span></label>
+        <textarea id="diag-objectif" class="form-control" rows="3" required placeholder="Ex : D&eacute;crocher un stage en marketing, reconversion vers l'informatique, poste de manager&hellip;"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="diag-infos">Informations compl&eacute;mentaires</label>
+        <textarea id="diag-infos" class="form-control" rows="2" placeholder="Secteur vis&eacute;, niveau d'&eacute;tudes, exp&eacute;riences, difficult&eacute;s rencontr&eacute;es&hellip;"></textarea>
+      </div>
+
+      <button type="submit" class="modal-submit" id="diagSubmitBtn">
+        Recevoir mon diagnostic gratuit
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M7 7h10v10"/></svg>
+      </button>
+
+      <p class="modal-note">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:13px;height:13px;display:inline;vertical-align:middle;margin-right:4px"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Rapport envoy&eacute; sous 24h &agrave; votre adresse e-mail &mdash; 100% gratuit, sans engagement.
+      </p>
+    </form>
+  </div>
+</div>
+
 </body>
 </html>
