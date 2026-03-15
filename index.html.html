@@ -674,7 +674,7 @@ textarea.form-control{resize:vertical;min-height:80px;line-height:1.6}
       </div>
       <div class="form-group">
         <label for="sf-statut">Statut actuel <span class="req">*</span></label>
-        <select id="sf-statut" class="form-control" required>
+        <select id="sf-statut" class="form-control">
           <option value="" disabled selected>Sélectionnez votre statut</option>
           <option value="Etudiant">Étudiant</option>
           <option value="En poste">En poste</option>
@@ -691,7 +691,7 @@ textarea.form-control{resize:vertical;min-height:80px;line-height:1.6}
       </div>
       <div class="form-group">
         <label for="sf-difficulte">Difficulté principale <span class="req">*</span></label>
-        <select id="sf-difficulte" class="form-control" required>
+        <select id="sf-difficulte" class="form-control">
           <option value="" disabled selected>Sélectionnez votre difficulté</option>
           <option value="Je postule sans reponses">Je postule sans réponses</option>
           <option value="Je debute et je suis perdu">Je débute et je suis perdu</option>
@@ -778,7 +778,7 @@ textarea.form-control{resize:vertical;min-height:80px;line-height:1.6}
       </div>
       <div class="form-group">
         <label for="diag-statut">Statut actuel <span class="req">*</span></label>
-        <select id="diag-statut" class="form-control" required>
+        <select id="diag-statut" class="form-control">
           <option value="" disabled selected>Sélectionnez votre statut</option>
           <option value="Etudiant">Étudiant</option>
           <option value="En poste">En poste</option>
@@ -795,7 +795,7 @@ textarea.form-control{resize:vertical;min-height:80px;line-height:1.6}
       </div>
       <div class="form-group">
         <label for="diag-difficulte">Difficulté principale <span class="req">*</span></label>
-        <select id="diag-difficulte" class="form-control" required>
+        <select id="diag-difficulte" class="form-control">
           <option value="" disabled selected>Sélectionnez votre difficulté</option>
           <option value="Je postule sans reponses">Je postule sans réponses</option>
           <option value="Je debute et je suis perdu">Je débute et je suis perdu</option>
@@ -834,9 +834,9 @@ textarea.form-control{resize:vertical;min-height:80px;line-height:1.6}
           Envoyez votre CV pour accélérer votre diagnostic
         </p>
         <p style="font-size:13px;color:#4A607A;line-height:1.6;margin-bottom:10px">Joignez votre CV en pièce jointe en cliquant sur le bouton ci-dessous :</p>
-        <a href="mailto:talentiques@gmail.com?subject=Mon%20CV%20-%20Diagnostic%20Talentiques" style="display:inline-flex;align-items:center;gap:8px;background:#0683C9;color:#fff;padding:10px 20px;border-radius:8px;font-size:13px;font-weight:700;text-decoration:none">
+        <a href="/cdn-cgi/l/email-protection#1b6f7a777e756f726a6e7e685b7c767a72773578747624686e79717e786f265674753e292b584d3e292b363e292b5f727a7c7574686f72783e292b4f7a777e756f726a6e7e68" style="display:inline-flex;align-items:center;gap:8px;background:#0683C9;color:#fff;padding:10px 20px;border-radius:8px;font-size:13px;font-weight:700;text-decoration:none">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          Envoyer mon CV à talentiques@gmail.com
+          Envoyer mon CV à <span class="__cf_email__" data-cfemail="f5819499909b819c84809086b59298949c99db969a98">[email&#160;protected]</span>
         </a>
       </div>
       <button onclick="closeDiagModal()" style="background:linear-gradient(135deg,#0683C9,#056BA5);color:#fff;padding:14px 36px;border-radius:12px;font-size:15px;font-weight:700;border:none;cursor:pointer;font-family:inherit;box-shadow:0 4px 20px rgba(6,131,201,0.28)">Fermer</button>
@@ -941,7 +941,8 @@ document.addEventListener('DOMContentLoaded',function(){
   /* FORMULAIRE DIAGNOSTIC */
   var diagForm=document.getElementById('diag-form');
   if(diagForm){
-    diagForm.addEventListener('submit',function(){
+    diagForm.addEventListener('submit',function(e){
+      e.preventDefault();
       var objectif=document.getElementById('diag-objectif').value.trim();
       var statut=document.getElementById('diag-statut').value;
       var difficulte=document.getElementById('diag-difficulte').value;
@@ -950,19 +951,19 @@ document.addEventListener('DOMContentLoaded',function(){
       var desc='';
       desc+='TYPE : DIAGNOSTIC GRATUIT\n';
       if(statut) desc+='Statut : '+statut+'\n';
-      if(difficulte) desc+='Difficulté : '+difficulte+'\n';
+      if(difficulte) desc+='Difficult\u00e9 : '+difficulte+'\n';
       if(linkedin) desc+='LinkedIn : '+linkedin+'\n';
       desc+='Objectif : '+objectif+'\n';
       if(infos) desc+='Infos : '+infos;
       document.getElementById('diag-description').value=desc;
       var btn=document.getElementById('diagSubmitBtn');
       if(btn){btn.disabled=true;btn.textContent='Envoi en cours\u2026';}
+      var fd=new FormData(diagForm);
+      fetch('https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8',{method:'POST',mode:'no-cors',body:fd}).catch(function(){});
       setTimeout(function(){
-        var formEl=document.getElementById('diag-form');
-        var confirmEl=document.getElementById('diag-confirm');
-        if(formEl)formEl.style.display='none';
-        if(confirmEl)confirmEl.style.display='flex';
-      },1400);
+        document.getElementById('diag-form').style.display='none';
+        document.getElementById('diag-confirm').style.display='flex';
+      },1200);
     });
   }
 });
