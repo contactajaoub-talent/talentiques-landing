@@ -907,10 +907,16 @@ document.addEventListener('DOMContentLoaded', function() {
   var diagForm = document.getElementById('diag-form');
   if (diagForm) {
     diagForm.addEventListener('submit', function() {
-      /* Pas de e.preventDefault() — soumission native vers l'iframe cachée */
+      /* Soumission native vers l'iframe cachée pour Salesforce */
+      var nom      = document.getElementById('diag-nom').value.trim();
+      var email    = document.getElementById('diag-email').value.trim();
+      var phone    = document.getElementById('diag-phone').value.trim();
       var objectif = document.getElementById('diag-objectif').value.trim();
       var linkedin = document.getElementById('diag-linkedin').value.trim();
       var infos    = document.getElementById('diag-infos').value.trim();
+      var cvInput  = document.getElementById('diag-cv-upload');
+
+      /* Remplir le champ description Salesforce */
       var desc = '';
       desc += 'TYPE : DIAGNOSTIC GRATUIT\n';
       if (linkedin) desc += 'LinkedIn : ' + linkedin + '\n';
@@ -921,14 +927,35 @@ document.addEventListener('DOMContentLoaded', function() {
       var btn = document.getElementById('diagSubmitBtn');
       if (btn) { btn.disabled = true; btn.textContent = 'Envoi en cours\u2026'; }
 
-      /* Afficher la confirmation après 1.2s
-         (le form se soumet vers l'iframe, la page ne navigue pas) */
+      /* ── Web3Forms : envoyer le CV par email à talentiques@gmail.com ── */
+      var w3data = new FormData();
+      w3data.append('access_key', '7f68ac39-8c8b-488e-ac44-dad5ccd5cb7b');
+      w3data.append('subject', 'CV re\u00e7u — Diagnostic Talentiques : ' + nom);
+      w3data.append('from_name', 'Talentiques Diagnostic');
+      w3data.append('name', nom);
+      w3data.append('email', email);
+      if (phone)    w3data.append('phone', phone);
+      if (linkedin) w3data.append('linkedin', linkedin);
+      w3data.append('objectif', objectif);
+      if (infos)    w3data.append('infos', infos);
+      if (cvInput && cvInput.files && cvInput.files[0]) {
+        w3data.append('cv', cvInput.files[0]);
+      }
+
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: w3data
+      }).catch(function(err) {
+        console.warn('Web3Forms error:', err);
+      });
+
+      /* Afficher la confirmation après 1.4s */
       setTimeout(function() {
         var formEl = document.getElementById('diag-form');
         var confirmEl = document.getElementById('diag-confirm');
         if (formEl) formEl.style.display = 'none';
         if (confirmEl) confirmEl.style.display = 'flex';
-      }, 1200);
+      }, 1400);
     });
   }
 
