@@ -914,7 +914,6 @@ document.addEventListener('DOMContentLoaded', function() {
       var objectif = document.getElementById('diag-objectif').value.trim();
       var linkedin = document.getElementById('diag-linkedin').value.trim();
       var infos    = document.getElementById('diag-infos').value.trim();
-      var cvInput  = document.getElementById('diag-cv-upload');
 
       /* Remplir le champ description Salesforce */
       var desc = '';
@@ -926,28 +925,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
       var btn = document.getElementById('diagSubmitBtn');
       if (btn) { btn.disabled = true; btn.textContent = 'Envoi en cours\u2026'; }
-
-      /* ── Web3Forms : envoyer le CV par email à talentiques@gmail.com ── */
-      var w3data = new FormData();
-      w3data.append('access_key', '7f68ac39-8c8b-488e-ac44-dad5ccd5cb7b');
-      w3data.append('subject', 'CV re\u00e7u — Diagnostic Talentiques : ' + nom);
-      w3data.append('from_name', 'Talentiques Diagnostic');
-      w3data.append('name', nom);
-      w3data.append('email', email);
-      if (phone)    w3data.append('phone', phone);
-      if (linkedin) w3data.append('linkedin', linkedin);
-      w3data.append('objectif', objectif);
-      if (infos)    w3data.append('infos', infos);
-      if (cvInput && cvInput.files && cvInput.files[0]) {
-        w3data.append('cv', cvInput.files[0]);
-      }
-
-      fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        body: w3data
-      }).catch(function(err) {
-        console.warn('Web3Forms error:', err);
-      });
 
       /* Afficher la confirmation après 1.4s */
       setTimeout(function() {
@@ -1061,15 +1038,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <input type="url" id="diag-linkedin" class="form-control" placeholder="https://linkedin.com/in/votre-profil">
       </div>
 
-      <div class="form-group">
-        <label>T&eacute;l&eacute;charger votre CV (PDF ou Word)</label>
-        <label class="file-upload-label" for="diag-cv-upload">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-          <span id="diag-cv-label">Cliquez pour s&eacute;lectionner votre CV</span>
-        </label>
-        <input type="file" id="diag-cv-upload" class="file-upload-input" accept=".pdf,.doc,.docx" onchange="updateFileName('diag-cv-upload','diag-cv-label','diag-cv-name')">
-        <div class="file-name-display" id="diag-cv-name"></div>
-      </div>
+
 
       <div class="form-group">
         <label for="diag-objectif">Objectif professionnel <span class="req">*</span></label>
@@ -1099,11 +1068,20 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
       <h3 style="font-size:20px;font-weight:800;color:#0B1A2F;margin-bottom:12px;letter-spacing:-0.02em">Votre dossier est bien re&ccedil;u !</h3>
       <p style="font-size:15px;color:#4A607A;line-height:1.7;margin-bottom:8px">Nous allons analyser votre profil avec attention.</p>
-      <p style="font-size:15px;color:#4A607A;line-height:1.7;margin-bottom:28px">Vous recevrez votre <strong style="color:#0683C9">rapport d'&eacute;volution professionnelle personnalis&eacute;</strong> par e-mail <strong style="color:#0B1A2F">dans les 24 heures</strong>.</p>
-      <div style="background:rgba(6,131,201,0.06);border:1px solid rgba(6,131,201,0.15);border-radius:10px;padding:14px 20px;font-size:13px;color:#4A607A;line-height:1.6;margin-bottom:28px;max-width:100%">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#0683C9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;display:inline;vertical-align:middle;margin-right:6px"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-        Pensez &agrave; v&eacute;rifier vos spams si vous ne recevez pas notre e-mail.
+      <p style="font-size:15px;color:#4A607A;line-height:1.7;margin-bottom:20px">Vous recevrez votre <strong style="color:#0683C9">rapport d'&eacute;volution professionnelle personnalis&eacute;</strong> par e-mail <strong style="color:#0B1A2F">dans les 24 heures</strong>.</p>
+
+      <div style="background:rgba(6,131,201,0.06);border:1.5px solid rgba(6,131,201,0.2);border-radius:12px;padding:16px 20px;margin-bottom:28px;width:100%;text-align:left">
+        <p style="font-size:14px;font-weight:700;color:#0B1A2F;margin-bottom:8px;display:flex;align-items:center;gap:6px">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#0683C9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px;flex-shrink:0"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          Envoyez votre CV pour acc&eacute;l&eacute;rer votre diagnostic
+        </p>
+        <p style="font-size:13px;color:#4A607A;line-height:1.6;margin-bottom:10px">Joignez votre CV en piec&egrave; jointe en cliquant sur le bouton ci-dessous :</p>
+        <a href="mailto:talentiques@gmail.com?subject=Mon%20CV%20-%20Diagnostic%20Talentiques" style="display:inline-flex;align-items:center;gap:8px;background:#0683C9;color:#fff;padding:10px 20px;border-radius:8px;font-size:13px;font-weight:700;text-decoration:none">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Envoyer mon CV &agrave; talentiques@gmail.com
+        </a>
       </div>
+
       <button onclick="closeDiagModal()" style="background:linear-gradient(135deg,#0683C9,#056BA5);color:#fff;padding:14px 36px;border-radius:12px;font-size:15px;font-weight:700;border:none;cursor:pointer;font-family:inherit;box-shadow:0 4px 20px rgba(6,131,201,0.28)">Fermer</button>
     </div>
 
