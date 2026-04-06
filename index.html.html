@@ -94,7 +94,7 @@ img{max-width:100%;display:block}a{text-decoration:none;color:inherit}ul{list-st
 .problem-stat-icon svg{width:32px;height:32px;color:var(--blue);margin:0 auto}
 .problem-stat-title{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:6px}
 .problem-stat-desc{font-size:13px;color:var(--text-muted);line-height:1.5}
-.solution-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.solution-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));gap:24px}
 .solution-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:36px 28px;text-align:center;box-shadow:var(--shadow);transition:var(--transition);position:relative;overflow:hidden}
 .solution-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--blue-light));opacity:0;transition:var(--transition)}
 .solution-card:hover{box-shadow:var(--shadow-hover);border-color:var(--border-hover);transform:translateY(-6px)}
@@ -104,7 +104,7 @@ img{max-width:100%;display:block}a{text-decoration:none;color:inherit}ul{list-st
 .solution-card h3{font-size:17px;font-weight:700;color:var(--navy);margin-bottom:10px}
 .solution-card p{font-size:14px;color:var(--text-sub);line-height:1.65}
 .offers{padding:100px 0;background:linear-gradient(180deg,var(--bg-alt) 0%,var(--bg) 50%,var(--bg-alt) 100%)}
-.offers-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:80px}
+.offers-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-bottom:80px}
 .offer-card{background:var(--card);border:1.5px solid var(--border);border-radius:var(--radius-xl);padding:40px 32px;display:flex;flex-direction:column;box-shadow:var(--shadow);transition:var(--transition);position:relative}
 .offer-card:hover{box-shadow:var(--shadow-hover);border-color:var(--border-hover)}
 .offer-card.highlighted{background:linear-gradient(160deg,#FFFFFF 0%,#EDF5FF 100%);border-color:var(--blue);box-shadow:0 8px 48px rgba(6,131,201,0.16),0 0 0 1px rgba(6,131,201,0.15)}
@@ -244,9 +244,46 @@ textarea.form-control{resize:vertical;min-height:80px;line-height:1.6}
 .file-upload-label svg{width:18px;height:18px;flex-shrink:0}
 .file-upload-input{display:none}
 .file-name-display{font-size:12px;color:var(--blue);margin-top:5px;font-weight:500;min-height:16px}
-@media(max-width:1024px){.offers-grid{grid-template-columns:1fr;max-width:480px;margin:0 auto 80px}.solution-grid{grid-template-columns:repeat(2,1fr)}.trust-grid{grid-template-columns:repeat(2,1fr)}.method-steps{flex-direction:column;gap:32px}.method-steps::before{display:none}.deliverables-grid{grid-template-columns:repeat(2,1fr)}.footer-inner{grid-template-columns:1fr 1fr}.problem-grid{grid-template-columns:1fr}.problem-visual{grid-template-columns:repeat(4,1fr)}.comparison-wrapper{overflow-x:auto}}
-@media(max-width:768px){.nav-links{display:none}.mobile-toggle{display:flex}.hero{padding:120px 0 72px}.hero h1{font-size:28px}.hero-ctas,.hero-trust{flex-direction:column;align-items:center}.trust-grid,.solution-grid{grid-template-columns:1fr}.deliverables-grid{grid-template-columns:1fr 1fr}.final-cta-buttons{flex-direction:column;align-items:center}.footer-inner{grid-template-columns:1fr;gap:32px}.footer-bottom{flex-direction:column;gap:8px;text-align:center}.section{padding:72px 0}.problem-visual{grid-template-columns:repeat(2,1fr)}.contact-methods{flex-direction:column;align-items:center}.modal-box{padding:32px 24px}.form-row{grid-template-columns:1fr}.testimonial-card{width:280px}}
-@media(max-width:480px){.deliverables-grid{grid-template-columns:1fr}.problem-visual{grid-template-columns:1fr 1fr}}
+
+/* Mise à jour Media Queries pour 4 colonnes */
+@media(max-width:1200px){
+  .offers-grid{grid-template-columns:repeat(2,1fr)}
+  .solution-grid{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:1024px){
+  .trust-grid{grid-template-columns:repeat(2,1fr)}
+  .method-steps{flex-direction:column;gap:32px}
+  .method-steps::before{display:none}
+  .deliverables-grid{grid-template-columns:repeat(2,1fr)}
+  .footer-inner{grid-template-columns:1fr 1fr}
+  .problem-grid{grid-template-columns:1fr}
+  .problem-visual{grid-template-columns:repeat(4,1fr)}
+  .comparison-wrapper{overflow-x:auto}
+  .solution-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:768px){
+  .offers-grid{grid-template-columns:1fr;max-width:480px;margin:0 auto 80px}
+  .nav-links{display:none}
+  .mobile-toggle{display:flex}
+  .hero{padding:120px 0 72px}
+  .hero h1{font-size:28px}
+  .hero-ctas,.hero-trust{flex-direction:column;align-items:center}
+  .trust-grid,.solution-grid{grid-template-columns:1fr}
+  .deliverables-grid{grid-template-columns:1fr 1fr}
+  .final-cta-buttons{flex-direction:column;align-items:center}
+  .footer-inner{grid-template-columns:1fr;gap:32px}
+  .footer-bottom{flex-direction:column;gap:8px;text-align:center}
+  .section{padding:72px 0}
+  .problem-visual{grid-template-columns:repeat(2,1fr)}
+  .contact-methods{flex-direction:column;align-items:center}
+  .modal-box{padding:32px 24px}
+  .form-row{grid-template-columns:1fr}
+  .testimonial-card{width:280px}
+}
+@media(max-width:480px){
+  .deliverables-grid{grid-template-columns:1fr}
+  .problem-visual{grid-template-columns:1fr 1fr}
+}
 .fade-up{opacity:1;transform:translateY(0);transition:opacity 0.7s ease,transform 0.7s ease}
 .js-ready .fade-up{opacity:0;transform:translateY(24px)}
 .js-ready .fade-up.visible{opacity:1;transform:translateY(0)}
@@ -257,7 +294,7 @@ textarea.form-control{resize:vertical;min-height:80px;line-height:1.6}
   <div class="header-inner">
     <a href="#" class="logo">TalentiQues</a>
     <nav class="nav-links">
-      <a href="#mission">Mission</a><a href="#offres">Offres</a><a href="#methode">M&eacute;thode</a><a href="#avis">Avis</a><a href="#faq">FAQ</a><a href="#contact">Contact</a>
+      <a href="#mission">Mission</a><a href="#offres">Offres</a><a href="#methode">Méthode</a><a href="#avis">Avis</a><a href="#faq">FAQ</a><a href="#contact">Contact</a>
       <button class="nav-diag" onclick="openDiagModal()">Diagnostic Gratuit</button>
       <a href="#offres" class="nav-cta">Choisir mon offre</a>
     </nav>
@@ -266,7 +303,7 @@ textarea.form-control{resize:vertical;min-height:80px;line-height:1.6}
 </header>
 <div class="mobile-overlay" id="mobileOverlay" onclick="closeMobile()"></div>
 <nav class="mobile-menu" id="mobileMenu">
-  <a href="#mission" onclick="closeMobile()">Mission</a><a href="#offres" onclick="closeMobile()">Offres</a><a href="#methode" onclick="closeMobile()">M&eacute;thode</a><a href="#avis" onclick="closeMobile()">Avis</a><a href="#faq" onclick="closeMobile()">FAQ</a><a href="#contact" onclick="closeMobile()">Contact</a>
+  <a href="#mission" onclick="closeMobile()">Mission</a><a href="#offres" onclick="closeMobile()">Offres</a><a href="#methode" onclick="closeMobile()">Méthode</a><a href="#avis" onclick="closeMobile()">Avis</a><a href="#faq" onclick="closeMobile()">FAQ</a><a href="#contact" onclick="closeMobile()">Contact</a>
   <button class="nav-diag" onclick="closeMobile();openDiagModal()" style="margin-top:16px;width:100%;text-align:center;border-bottom:none;padding:16px">Diagnostic Gratuit</button>
   <a href="#offres" class="nav-cta" onclick="closeMobile()">Choisir mon offre</a>
 </nav>
@@ -274,15 +311,15 @@ textarea.form-control{resize:vertical;min-height:80px;line-height:1.6}
 <section class="hero" id="hero">
   <div class="hero-inner">
     <div class="hero-eyebrow">Valorisation de l'image professionnelle</div>
-    <h1>Valorisez votre <span class="accent">image professionnelle.</span> Donnez plus de force &agrave; votre CV, LinkedIn et candidature.</h1>
-    <p class="hero-sub">Talentiques vous aide &agrave; construire une image claire, coh&eacute;rente et cr&eacute;dible pour renforcer votre positionnement et attirer plus d'opportunit&eacute;s professionnelles, en France, en Suisse, en Belgique, au Canada et &agrave; l'international.</p>
+    <h1>Valorisez votre <span class="accent">image professionnelle.</span> Donnez plus de force à votre CV, LinkedIn et candidature.</h1>
+    <p class="hero-sub">Talentiques vous aide à construire une image claire, cohérente et crédible pour renforcer votre positionnement et attirer plus d'opportunités professionnelles, en France, en Suisse, en Belgique, au Canada et à l'international.</p>
     <div class="hero-ctas">
       <button class="btn-primary" onclick="openDiagModal()">Diagnostic Gratuit <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M7 7h10v10"/></svg></button>
       <a href="#offres" class="btn-secondary">Voir nos offres</a>
     </div>
     <div class="hero-trust">
       <div class="trust-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Livraison rapide</div>
-      <div class="trust-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>Approche strat&eacute;gique</div>
+      <div class="trust-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>Approche stratégique</div>
       <div class="trust-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Accompagnement humain</div>
     </div>
   </div>
@@ -291,10 +328,10 @@ textarea.form-control{resize:vertical;min-height:80px;line-height:1.6}
 <section class="trust-bar">
   <div class="container">
     <div class="trust-grid">
-      <div class="trust-stat fade-up"><div class="trust-stat-value">+500 profils accompagn&eacute;s</div><div class="trust-stat-label">en 2025</div></div>
-      <div class="trust-stat fade-up"><div class="trust-stat-value">100% personnalis&eacute;</div><div class="trust-stat-label">Approche sur mesure</div></div>
+      <div class="trust-stat fade-up"><div class="trust-stat-value">+500 profils accompagnés</div><div class="trust-stat-label">en 2025</div></div>
+      <div class="trust-stat fade-up"><div class="trust-stat-value">100% personnalisé</div><div class="trust-stat-label">Approche sur mesure</div></div>
       <div class="trust-stat fade-up"><div class="trust-stat-value">France, Suisse, Belgique, Canada</div><div class="trust-stat-label">et international</div></div>
-      <div class="trust-stat fade-up"><div class="trust-stat-value">1 &agrave; 3 jours ouvr&eacute;s</div><div class="trust-stat-label">selon l'offre choisie</div></div>
+      <div class="trust-stat fade-up"><div class="trust-stat-value">1 à 3 jours ouvrés</div><div class="trust-stat-label">selon l'offre choisie</div></div>
     </div>
   </div>
 </section>
@@ -303,20 +340,20 @@ textarea.form-control{resize:vertical;min-height:80px;line-height:1.6}
   <div class="container">
     <div class="problem-grid">
       <div class="problem-content">
-        <h2>Pourquoi beaucoup de profils restent sous-valoris&eacute;s</h2>
+        <h2>Pourquoi beaucoup de profils restent sous-valorisés</h2>
         <div class="problem-list">
           <div class="problem-item fade-up"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>CV peu lisible ou peu convaincant</div>
-          <div class="problem-item fade-up"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>Profil LinkedIn sous-exploit&eacute;</div>
+          <div class="problem-item fade-up"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>Profil LinkedIn sous-exploité</div>
           <div class="problem-item fade-up"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>Message professionnel flou</div>
-          <div class="problem-item fade-up"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>Candidatures envoy&eacute;es sans coh&eacute;rence d'ensemble</div>
+          <div class="problem-item fade-up"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>Candidatures envoyées sans cohérence d'ensemble</div>
         </div>
-        <div class="problem-insight">Le probl&egrave;me n'est pas toujours le niveau du candidat. Tr&egrave;s souvent, c'est la mani&egrave;re dont son image professionnelle est pr&eacute;sent&eacute;e.</div>
+        <div class="problem-insight">Le problème n'est pas toujours le niveau du candidat. Très souvent, c'est la manière dont son image professionnelle est présentée.</div>
       </div>
       <div class="problem-visual">
-        <div class="problem-stat-card fade-up"><div class="problem-stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="problem-stat-title">CV</div><div class="problem-stat-desc">Structure et lisibilit&eacute; &agrave; optimiser</div></div>
-        <div class="problem-stat-card fade-up"><div class="problem-stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></div><div class="problem-stat-title">LinkedIn</div><div class="problem-stat-desc">Visibilit&eacute; et positionnement insuffisants</div></div>
-        <div class="problem-stat-card fade-up"><div class="problem-stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div class="problem-stat-title">Lettre</div><div class="problem-stat-desc">Impact et personnalisation &agrave; renforcer</div></div>
-        <div class="problem-stat-card fade-up"><div class="problem-stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div><div class="problem-stat-title">Coh&eacute;rence</div><div class="problem-stat-desc">Image globale fragment&eacute;e</div></div>
+        <div class="problem-stat-card fade-up"><div class="problem-stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="problem-stat-title">CV</div><div class="problem-stat-desc">Structure et lisibilité à optimiser</div></div>
+        <div class="problem-stat-card fade-up"><div class="problem-stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></div><div class="problem-stat-title">LinkedIn</div><div class="problem-stat-desc">Visibilité et positionnement insuffisants</div></div>
+        <div class="problem-stat-card fade-up"><div class="problem-stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div class="problem-stat-title">Lettre</div><div class="problem-stat-desc">Impact et personnalisation à renforcer</div></div>
+        <div class="problem-stat-card fade-up"><div class="problem-stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div><div class="problem-stat-title">Cohérence</div><div class="problem-stat-desc">Image globale fragmentée</div></div>
       </div>
     </div>
   </div>
@@ -326,12 +363,21 @@ textarea.form-control{resize:vertical;min-height:80px;line-height:1.6}
   <div class="container">
     <div class="section-eyebrow">Notre approche</div>
     <h2 class="section-title">La solution Talentiques</h2>
-    <p class="section-subtitle">Talentiques aligne votre CV, votre lettre de motivation, votre profil LinkedIn et votre positionnement pour cr&eacute;er une image professionnelle plus forte, plus coh&eacute;rente et plus cr&eacute;dible.</p>
+    <p class="section-subtitle">Talentiques aligne votre CV, votre lettre de motivation, votre profil LinkedIn et votre positionnement pour créer une image professionnelle plus forte, plus cohérente et plus crédible.</p>
     <div class="solution-grid">
-      <div class="solution-card fade-up"><div class="solution-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div><h3>Clart&eacute;</h3><p>Un message professionnel limpide, structur&eacute; et imm&eacute;diatement compr&eacute;hensible.</p></div>
-      <div class="solution-card fade-up"><div class="solution-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><h3>Coh&eacute;rence</h3><p>CV, lettre et LinkedIn parfaitement align&eacute;s pour projeter une image unifi&eacute;e.</p></div>
-      <div class="solution-card fade-up"><div class="solution-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div><h3>Visibilit&eacute;</h3><p>Un positionnement optimis&eacute; pour &ecirc;tre identifi&eacute; plus facilement par les recruteurs.</p></div>
-      <div class="solution-card fade-up"><div class="solution-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div><h3>Impact</h3><p>Des supports qui captent l'attention, renforcent la cr&eacute;dibilit&eacute; et augmentent les retours positifs.</p></div>
+      <div class="solution-card fade-up"><div class="solution-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div><h3>Clarté</h3><p>Un message professionnel limpide, structuré et immédiatement compréhensible.</p></div>
+      <div class="solution-card fade-up"><div class="solution-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><h3>Cohérence</h3><p>CV, lettre et LinkedIn parfaitement alignés pour projeter une image unifiée.</p></div>
+      <div class="solution-card fade-up"><div class="solution-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div><h3>Visibilité</h3><p>Un positionnement optimisé pour être identifié plus facilement par les recruteurs.</p></div>
+      <div class="solution-card fade-up"><div class="solution-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div><h3>Impact</h3><p>Des supports qui captent l'attention, renforcent la crédibilité et augmentent les retours positifs.</p></div>
+      <div class="solution-card fade-up">
+        <div class="solution-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+          </svg>
+        </div>
+        <h3>Expertise Humaine</h3>
+        <p>Une approche garantie à <strong>90% sans IA</strong>. Nous privilégions la réflexion stratégique humaine pour capturer votre singularité.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -339,80 +385,140 @@ textarea.form-control{resize:vertical;min-height:80px;line-height:1.6}
 <section class="offers" id="offres">
   <div class="container">
     <div class="section-eyebrow">Nos offres</div>
-    <h2 class="section-title">Choisissez l'offre adapt&eacute;e &agrave; votre objectif</h2>
-    <p class="section-subtitle">Trois niveaux d'accompagnement pour renforcer votre image professionnelle avec m&eacute;thode, clart&eacute; et efficacit&eacute;.</p>
+    <h2 class="section-title">Choisissez l'offre adaptée à votre objectif</h2>
+    <p class="section-subtitle">Des niveaux d'accompagnement pour renforcer votre image professionnelle avec méthode, clarté et efficacité.</p>
+    
     <div class="offers-grid">
       <div class="offer-card highlighted fade-up">
-        <div class="offer-badge">Recommand&eacute;</div>
+        <div class="offer-badge">Recommandé</div>
         <div class="offer-title">Pack de valorisation totale de votre image pro</div>
         <div class="offer-promo-ribbon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Offre valable jusqu'au 1er Mai</div>
-        <div class="offer-price">60 <span class="currency">&euro;</span> <span class="offer-price-old">95 &euro;</span></div>
-        <div class="offer-delay">Livraison : 2 &agrave; 3 jours ouvr&eacute;s</div>
-        <p class="offer-desc">Aligner CV, lettre de motivation et LinkedIn pour une image coh&eacute;rente, professionnelle et impactante.</p>
+        <div class="offer-price">60 <span class="currency">€</span> <span class="offer-price-old">95 €</span></div>
+        <div class="offer-delay">Livraison : 2 à 3 jours ouvrés</div>
+        <p class="offer-desc">Aligner CV, lettre et LinkedIn pour une image cohérente et impactante.</p>
         <div class="offer-features">
-          <div class="offer-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>CV refondu</div>
+          <div class="offer-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>CV optimisé ATS-friendly</div>
+          <div class="offer-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Livrables : Word modifiable + PDF</div>
           <div class="offer-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Lettre de motivation (1 cible)</div>
           <div class="offer-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Optimisation LinkedIn</div>
-          <div class="offer-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Versions pr&ecirc;tes &agrave; l'envoi</div>
+          <div class="offer-feature" style="color:var(--blue-dark); font-weight:600;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Conforme standards RH 2026</div>
         </div>
         <div class="offer-bonus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-6"/><polyline points="12 3 12 15"/><polyline points="8 7 12 3 16 7"/></svg>Tableau de suivi offert</div>
-        <button class="offer-cta" onclick="openModal('https://www.paypal.com/ncp/payment/X28ZHEKETU8FA','60 &euro;')">B&eacute;n&eacute;ficier de cette offre</button>
+        <button class="offer-cta" onclick="openModal('https://www.paypal.com/ncp/payment/X28ZHEKETU8FA','60 €')">Bénéficier de cette offre</button>
       </div>
+
+      <div class="offer-card fade-up" style="border-top: 4px solid var(--blue-light);">
+        <div class="offer-title">Pack Tremplin (Étudiants & <br>Recherche d'emploi > 6 mois)</div>
+        <div class="offer-promo-ribbon" style="background: rgba(6,131,201,0.1); color: var(--blue-dark); border-color: rgba(6,131,201,0.2);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>Sur présentation d'un justificatif</div>
+        <div class="offer-price">30 <span class="currency">€</span> <span class="offer-price-old">60 €</span></div>
+        <div class="offer-delay">Livraison : 2 à 3 jours ouvrés</div>
+        <p class="offer-desc">L'intégralité du Pack Complet à -50% pour vous aider à relancer votre carrière.</p>
+        <div class="offer-features">
+          <div class="offer-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>CV optimisé ATS-friendly</div>
+          <div class="offer-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Livrables : Word modifiable + PDF</div>
+          <div class="offer-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Lettre de motivation (1 cible)</div>
+          <div class="offer-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Optimisation LinkedIn</div>
+        </div>
+        <div class="offer-bonus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-6"/><polyline points="12 3 12 15"/><polyline points="8 7 12 3 16 7"/></svg>Tableau de suivi offert</div>
+        <button class="offer-cta" onclick="openModal('LIEN_PAYPAL_30_EUROS','Pack Tremplin','30 €')">Soumettre mon dossier</button>
+      </div>
+
       <div class="offer-card fade-up">
         <div class="offer-title">Refonte de CV + Lettre de motivation</div>
-        <div class="offer-price">45 <span class="currency">&euro;</span></div>
-        <div class="offer-delay">Livraison : 2 &agrave; 3 jours ouvr&eacute;s</div>
-        <p class="offer-desc">Renforcer la lisibilit&eacute;, la valeur per&ccedil;ue et l'ad&eacute;quation &agrave; un poste cible.</p>
+        <div class="offer-price">45 <span class="currency">€</span></div>
+        <div class="offer-delay">Livraison : 2 à 3 jours ouvrés</div>
+        <p class="offer-desc">Renforcer la lisibilité et l'adéquation à un poste cible.</p>
         <div class="offer-features">
-          <div class="offer-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>CV refondu (ATS-friendly)</div>
+          <div class="offer-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>CV optimisé ATS-friendly</div>
+          <div class="offer-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Livrables : Word modifiable + PDF</div>
           <div class="offer-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Lettre de motivation (1 cible)</div>
-          <div class="offer-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Relecture finale</div>
+          <div class="offer-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Relecture finale rigoureuse</div>
         </div>
         <div class="offer-bonus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-6"/><polyline points="12 3 12 15"/><polyline points="8 7 12 3 16 7"/></svg>Tableau de suivi offert</div>
-        <button class="offer-cta" onclick="openModal('https://www.paypal.com/ncp/payment/GTLRWNREXFVML','CV + Lettre de motivation','45 &euro;')">Choisir cette formule</button>
+        <button class="offer-cta" onclick="openModal('https://www.paypal.com/ncp/payment/GTLRWNREXFVML','CV + Lettre de motivation','45 €')">Choisir cette formule</button>
       </div>
+
       <div class="offer-card fade-up">
         <div class="offer-title">Optimisation de votre profil LinkedIn</div>
-        <div class="offer-price">45 <span class="currency">&euro;</span></div>
-        <div class="offer-delay">Livraison : 1 &agrave; 3 jours ouvr&eacute;s</div>
-        <p class="offer-desc">Am&eacute;liorer la visibilit&eacute;, le positionnement et l'attractivit&eacute; du profil.</p>
+        <div class="offer-price">45 <span class="currency">€</span></div>
+        <div class="offer-delay">Livraison : 1 à 3 jours ouvrés</div>
+        <p class="offer-desc">Améliorer la visibilité, le positionnement et l'attractivité du profil.</p>
         <div class="offer-features">
-          <div class="offer-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Titre + R&eacute;sum&eacute; optimis&eacute;s</div>
-          <div class="offer-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Mots-cl&eacute;s et comp&eacute;tences</div>
-          <div class="offer-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Ajustements exp&eacute;riences</div>
+          <div class="offer-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Titre + Résumé optimisés mots-clés</div>
+          <div class="offer-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Valorisation des expériences</div>
           <div class="offer-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Checklist publication</div>
+          <div class="offer-feature" style="color:var(--blue-dark); font-weight:600;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Indexation algorithme maximisée</div>
         </div>
         <div class="offer-bonus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-6"/><polyline points="12 3 12 15"/><polyline points="8 7 12 3 16 7"/></svg>Messages d'approche (template)</div>
-        <button class="offer-cta" onclick="openModal('https://www.paypal.com/ncp/payment/BNBURFRZWZZ4W','Optimisation LinkedIn','45 &euro;')">Acc&eacute;der &agrave; cette optimisation</button>
+        <button class="offer-cta" onclick="openModal('https://www.paypal.com/ncp/payment/BNBURFRZWZZ4W','Optimisation LinkedIn','45 €')">Accéder à cette optimisation</button>
       </div>
     </div>
+    
     <div class="comparison-wrapper fade-up">
       <table class="comparison-table">
-        <thead><tr><th></th><th class="highlight-col">Pack total &mdash; 45 &euro;</th><th>CV + Lettre &mdash; 30 &euro;</th><th>LinkedIn &mdash; 30 &euro;</th></tr></thead>
+        <thead>
+          <tr>
+            <th></th>
+            <th class="highlight-col">Pack total — 60 €</th>
+            <th>Pack Tremplin — 30 €</th>
+            <th>CV + Lettre — 45 €</th>
+            <th>LinkedIn — 45 €</th>
+          </tr>
+        </thead>
         <tbody>
-          <tr><td>CV refondu</td><td class="highlight-col"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3DA1DB" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></td><td><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3DA1DB" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></td><td style="color:var(--slate)">—</td></tr>
-          <tr><td>Lettre de motivation</td><td class="highlight-col"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3DA1DB" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></td><td><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3DA1DB" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></td><td style="color:var(--slate)">—</td></tr>
-          <tr><td>Optimisation LinkedIn</td><td class="highlight-col"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3DA1DB" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></td><td style="color:var(--slate)">—</td><td><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3DA1DB" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></td></tr>
-          <tr><td>Tableau de suivi</td><td class="highlight-col"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3DA1DB" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></td><td><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3DA1DB" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></td><td style="color:var(--slate)">—</td></tr>
-          <tr><td>D&eacute;lai</td><td class="highlight-col">2 &agrave; 3 jours</td><td>2 &agrave; 3 jours</td><td>1 &agrave; 3 jours</td></tr>
-          <tr><td>Tarif</td><td class="highlight-col" style="font-weight:800;color:var(--navy)">45 &euro;</td><td style="font-weight:700;color:var(--text)">30 &euro;</td><td style="font-weight:700;color:var(--text)">30 &euro;</td></tr>
+          <tr>
+            <td>CV ATS-friendly (Word + PDF)</td>
+            <td class="highlight-col"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3DA1DB" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></td>
+            <td><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3DA1DB" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></td>
+            <td><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3DA1DB" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></td>
+            <td style="color:var(--slate)">—</td>
+          </tr>
+          <tr>
+            <td>Lettre de motivation</td>
+            <td class="highlight-col"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3DA1DB" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></td>
+            <td><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3DA1DB" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></td>
+            <td><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3DA1DB" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></td>
+            <td style="color:var(--slate)">—</td>
+          </tr>
+          <tr>
+            <td>Optimisation LinkedIn</td>
+            <td class="highlight-col"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3DA1DB" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></td>
+            <td><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3DA1DB" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></td>
+            <td style="color:var(--slate)">—</td>
+            <td><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3DA1DB" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></td>
+          </tr>
+          <tr>
+            <td>Tableau de suivi offert</td>
+            <td class="highlight-col"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3DA1DB" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></td>
+            <td><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3DA1DB" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></td>
+            <td><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3DA1DB" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></td>
+            <td><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3DA1DB" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></td>
+          </tr>
+          <tr>
+            <td>Tarif</td>
+            <td class="highlight-col" style="font-weight:800;color:var(--navy)">60 €</td>
+            <td style="font-weight:800;color:var(--blue)">30 €*</td>
+            <td style="font-weight:700;color:var(--text)">45 €</td>
+            <td style="font-weight:700;color:var(--text)">45 €</td>
+          </tr>
         </tbody>
       </table>
+      <p style="text-align: right; font-size: 12px; color: var(--text-muted); margin: 10px 24px 10px 0;">*Pack Tremplin : sur présentation d'un justificatif (carte étudiant ou inscription Pôle Emploi > 6 mois).</p>
     </div>
   </div>
 </section>
 
 <section class="section section-accent" id="methode">
   <div class="container">
-    <div class="section-eyebrow">Notre m&eacute;thode</div>
-    <h2 class="section-title">Une m&eacute;thode simple, structur&eacute;e et orient&eacute;e r&eacute;sultat</h2>
-    <p class="section-subtitle">Cinq &eacute;tapes claires pour transformer votre image professionnelle avec rigueur et efficacit&eacute;.</p>
+    <div class="section-eyebrow">Notre méthode</div>
+    <h2 class="section-title">Une méthode simple, structurée et orientée résultat</h2>
+    <p class="section-subtitle">Cinq étapes claires pour transformer votre image professionnelle avec rigueur et efficacité.</p>
     <div class="method-steps">
-      <div class="method-step fade-up"><div class="step-number">01</div><h3>Analyse du profil</h3><p>&Eacute;tude approfondie de votre parcours, vos comp&eacute;tences et votre positionnement actuel.</p></div>
-      <div class="method-step fade-up"><div class="step-number">02</div><h3>Clarification de l'objectif</h3><p>D&eacute;finition pr&eacute;cise du poste cible et du message professionnel &agrave; porter.</p></div>
-      <div class="method-step fade-up"><div class="step-number">03</div><h3>Optimisation des supports</h3><p>Refonte du CV, de la lettre et du profil LinkedIn selon les standards du march&eacute;.</p></div>
-      <div class="method-step fade-up"><div class="step-number">04</div><h3>Ajustements finaux</h3><p>V&eacute;rification de la coh&eacute;rence globale, relecture et peaufinage de chaque d&eacute;tail.</p></div>
-      <div class="method-step fade-up"><div class="step-number">05</div><h3>Livraison pr&ecirc;te &agrave; l'envoi</h3><p>Documents finalis&eacute;s et optimis&eacute;s, directement utilisables pour vos candidatures.</p></div>
+      <div class="method-step fade-up"><div class="step-number">01</div><h3>Analyse du profil</h3><p>Étude approfondie de votre parcours, vos compétences et votre positionnement actuel.</p></div>
+      <div class="method-step fade-up"><div class="step-number">02</div><h3>Clarification de l'objectif</h3><p>Définition précise du poste cible et du message professionnel à porter.</p></div>
+      <div class="method-step fade-up"><div class="step-number">03</div><h3>Optimisation des supports</h3><p>Refonte du CV, de la lettre et du profil LinkedIn selon les standards du marché.</p></div>
+      <div class="method-step fade-up"><div class="step-number">04</div><h3>Ajustements finaux</h3><p>Vérification de la cohérence globale, relecture et peaufinage de chaque détail.</p></div>
+      <div class="method-step fade-up"><div class="step-number">05</div><h3>Livraison prête à l'envoi</h3><p>Documents finalisés et optimisés, directement utilisables pour vos candidatures.</p></div>
     </div>
   </div>
 </section>
@@ -420,12 +526,12 @@ textarea.form-control{resize:vertical;min-height:80px;line-height:1.6}
 <section class="section section-accent-alt">
   <div class="container">
     <div class="section-eyebrow">Vos livrables</div>
-    <h2 class="section-title">Ce que vous recevez concr&egrave;tement</h2>
-    <p class="section-subtitle">Des supports professionnels, optimis&eacute;s et directement exploitables.</p>
+    <h2 class="section-title">Ce que vous recevez concrètement</h2>
+    <p class="section-subtitle">Des supports professionnels, optimisés et directement exploitables.</p>
     <div class="deliverables-grid">
-      <div class="deliverable-card fade-up"><div class="deliverable-preview"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div><h3>CV PDF / Word</h3><p>Refondu, structur&eacute; et optimis&eacute; ATS pour maximiser la lisibilit&eacute;.</p></div>
-      <div class="deliverable-card fade-up"><div class="deliverable-preview"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></div><h3>Profil LinkedIn optimis&eacute;</h3><p>Titre, r&eacute;sum&eacute;, mots-cl&eacute;s et comp&eacute;tences calibr&eacute;s pour la visibilit&eacute;.</p></div>
-      <div class="deliverable-card fade-up"><div class="deliverable-preview"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><h3>Lettre de motivation</h3><p>Personnalis&eacute;e, cibl&eacute;e et r&eacute;dactionnellement impactante.</p></div>
+      <div class="deliverable-card fade-up"><div class="deliverable-preview"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div><h3>CV PDF / Word</h3><p>Refondu, structuré et optimisé ATS pour maximiser la lisibilité.</p></div>
+      <div class="deliverable-card fade-up"><div class="deliverable-preview"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></div><h3>Profil LinkedIn optimisé</h3><p>Titre, résumé, mots-clés et compétences calibrés pour la visibilité.</p></div>
+      <div class="deliverable-card fade-up"><div class="deliverable-preview"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><h3>Lettre de motivation</h3><p>Personnalisée, ciblée et rédactionnellement impactante.</p></div>
       <div class="deliverable-card fade-up"><div class="deliverable-preview"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg></div><h3>Tableau de suivi</h3><p>Outil d'organisation offert pour piloter vos candidatures efficacement.</p></div>
     </div>
   </div>
@@ -434,77 +540,77 @@ textarea.form-control{resize:vertical;min-height:80px;line-height:1.6}
 <section class="testimonials" id="avis">
   <div class="container">
     <div class="section-eyebrow">Retours clients</div>
-    <h2 class="section-title">Ce que nos clients appr&eacute;cient</h2>
-    <p class="section-subtitle">Des retours authentiques qui t&eacute;moignent de la qualit&eacute; de notre accompagnement.</p>
+    <h2 class="section-title">Ce que nos clients apprécient</h2>
+    <p class="section-subtitle">Des retours authentiques qui témoignent de la qualité de notre accompagnement.</p>
   </div>
   <div class="testimonials-track-wrap" style="margin-top:48px">
     <div class="testimonials-row row-1">
-      <div class="testimonial-card"><div class="testimonial-quote">"</div><p class="testimonial-text">L'accompagnement a permis de clarifier mon positionnement. Mon CV est d&eacute;sormais plus lisible et mon profil LinkedIn bien plus coh&eacute;rent avec mes objectifs.</p><div class="testimonial-author"><div class="testimonial-avatar">CM</div><div><div class="testimonial-name">Claire Moreau</div><div class="testimonial-role">Charg&eacute;e de communication &mdash; France</div></div></div></div>
-      <div class="testimonial-card"><div class="testimonial-quote">"</div><p class="testimonial-text">Un travail structur&eacute; et professionnel. La refonte de mon CV m'a donn&eacute; une bien meilleure confiance pour postuler &agrave; des postes de consultant senior.</p><div class="testimonial-author"><div class="testimonial-avatar">JR</div><div><div class="testimonial-name">Julien Renaud</div><div class="testimonial-role">Consultant IT &mdash; Suisse</div></div></div></div>
-      <div class="testimonial-card"><div class="testimonial-quote">"</div><p class="testimonial-text">J'appr&eacute;cie la qualit&eacute; de la r&eacute;daction et l'attention port&eacute;e aux d&eacute;tails. Le r&eacute;sultat est sobre, professionnel et parfaitement adapt&eacute; &agrave; mon secteur.</p><div class="testimonial-author"><div class="testimonial-avatar">SL</div><div><div class="testimonial-name">Sophie Lambert</div><div class="testimonial-role">Assistante de direction &mdash; Belgique</div></div></div></div>
-      <div class="testimonial-card"><div class="testimonial-quote">"</div><p class="testimonial-text">Le pack complet m'a permis d'avoir une image coh&eacute;rente sur tous mes supports. Le tableau de suivi est un vrai plus pour rester organis&eacute;.</p><div class="testimonial-author"><div class="testimonial-avatar">NG</div><div><div class="testimonial-name">Nicolas Gauthier</div><div class="testimonial-role">Responsable commercial &mdash; Canada</div></div></div></div>
-      <div class="testimonial-card"><div class="testimonial-quote">"</div><p class="testimonial-text">En tant que jeune dipl&ocirc;m&eacute;e, j'avais du mal &agrave; formuler ma valeur ajout&eacute;e. Le CV et la lettre transmis sont clairs, pr&eacute;cis et bien plus convaincants.</p><div class="testimonial-author"><div class="testimonial-avatar">CB</div><div><div class="testimonial-name">Camille Bernard</div><div class="testimonial-role">Jeune dipl&ocirc;m&eacute;e &mdash; France</div></div></div></div>
-      <div class="testimonial-card"><div class="testimonial-quote">"</div><p class="testimonial-text">L'optimisation LinkedIn a rendu mon profil plus visible et plus lisible. J'ai re&ccedil;u davantage de sollicitations depuis la mise &agrave; jour.</p><div class="testimonial-author"><div class="testimonial-avatar">AL</div><div><div class="testimonial-name">Antoine Leduc</div><div class="testimonial-role">Business Analyst &mdash; Canada</div></div></div></div>
-      <div class="testimonial-card"><div class="testimonial-quote">"</div><p class="testimonial-text">L'accompagnement a permis de clarifier mon positionnement. Mon CV est d&eacute;sormais plus lisible et mon profil LinkedIn bien plus coh&eacute;rent avec mes objectifs.</p><div class="testimonial-author"><div class="testimonial-avatar">CM</div><div><div class="testimonial-name">Claire Moreau</div><div class="testimonial-role">Charg&eacute;e de communication &mdash; France</div></div></div></div>
-      <div class="testimonial-card"><div class="testimonial-quote">"</div><p class="testimonial-text">Un travail structur&eacute; et professionnel. La refonte de mon CV m'a donn&eacute; une bien meilleure confiance pour postuler &agrave; des postes de consultant senior.</p><div class="testimonial-author"><div class="testimonial-avatar">JR</div><div><div class="testimonial-name">Julien Renaud</div><div class="testimonial-role">Consultant IT &mdash; Suisse</div></div></div></div>
-      <div class="testimonial-card"><div class="testimonial-quote">"</div><p class="testimonial-text">J'appr&eacute;cie la qualit&eacute; de la r&eacute;daction et l'attention port&eacute;e aux d&eacute;tails. Le r&eacute;sultat est sobre, professionnel et parfaitement adapt&eacute; &agrave; mon secteur.</p><div class="testimonial-author"><div class="testimonial-avatar">SL</div><div><div class="testimonial-name">Sophie Lambert</div><div class="testimonial-role">Assistante de direction &mdash; Belgique</div></div></div></div>
-      <div class="testimonial-card"><div class="testimonial-quote">"</div><p class="testimonial-text">Le pack complet m'a permis d'avoir une image coh&eacute;rente sur tous mes supports. Le tableau de suivi est un vrai plus pour rester organis&eacute;.</p><div class="testimonial-author"><div class="testimonial-avatar">NG</div><div><div class="testimonial-name">Nicolas Gauthier</div><div class="testimonial-role">Responsable commercial &mdash; Canada</div></div></div></div>
-      <div class="testimonial-card"><div class="testimonial-quote">"</div><p class="testimonial-text">En tant que jeune dipl&ocirc;m&eacute;e, j'avais du mal &agrave; formuler ma valeur ajout&eacute;e. Le CV et la lettre transmis sont clairs, pr&eacute;cis et bien plus convaincants.</p><div class="testimonial-author"><div class="testimonial-avatar">CB</div><div><div class="testimonial-name">Camille Bernard</div><div class="testimonial-role">Jeune dipl&ocirc;m&eacute;e &mdash; France</div></div></div></div>
-      <div class="testimonial-card"><div class="testimonial-quote">"</div><p class="testimonial-text">L'optimisation LinkedIn a rendu mon profil plus visible et plus lisible. J'ai re&ccedil;u davantage de sollicitations depuis la mise &agrave; jour.</p><div class="testimonial-author"><div class="testimonial-avatar">AL</div><div><div class="testimonial-name">Antoine Leduc</div><div class="testimonial-role">Business Analyst &mdash; Canada</div></div></div></div>
+      <div class="testimonial-card"><div class="testimonial-quote">"</div><p class="testimonial-text">L'accompagnement a permis de clarifier mon positionnement. Mon CV est désormais plus lisible et mon profil LinkedIn bien plus cohérent avec mes objectifs.</p><div class="testimonial-author"><div class="testimonial-avatar">CM</div><div><div class="testimonial-name">Claire Moreau</div><div class="testimonial-role">Chargée de communication — France</div></div></div></div>
+      <div class="testimonial-card"><div class="testimonial-quote">"</div><p class="testimonial-text">Un travail structuré et professionnel. La refonte de mon CV m'a donné une bien meilleure confiance pour postuler à des postes de consultant senior.</p><div class="testimonial-author"><div class="testimonial-avatar">JR</div><div><div class="testimonial-name">Julien Renaud</div><div class="testimonial-role">Consultant IT — Suisse</div></div></div></div>
+      <div class="testimonial-card"><div class="testimonial-quote">"</div><p class="testimonial-text">J'apprécie la qualité de la rédaction et l'attention portée aux détails. Le résultat est sobre, professionnel et parfaitement adapté à mon secteur.</p><div class="testimonial-author"><div class="testimonial-avatar">SL</div><div><div class="testimonial-name">Sophie Lambert</div><div class="testimonial-role">Assistante de direction — Belgique</div></div></div></div>
+      <div class="testimonial-card"><div class="testimonial-quote">"</div><p class="testimonial-text">Le pack complet m'a permis d'avoir une image cohérente sur tous mes supports. Le tableau de suivi est un vrai plus pour rester organisé.</p><div class="testimonial-author"><div class="testimonial-avatar">NG</div><div><div class="testimonial-name">Nicolas Gauthier</div><div class="testimonial-role">Responsable commercial — Canada</div></div></div></div>
+      <div class="testimonial-card"><div class="testimonial-quote">"</div><p class="testimonial-text">En tant que jeune diplômée, j'avais du mal à formuler ma valeur ajoutée. Le CV et la lettre transmis sont clairs, précis et bien plus convaincants.</p><div class="testimonial-author"><div class="testimonial-avatar">CB</div><div><div class="testimonial-name">Camille Bernard</div><div class="testimonial-role">Jeune diplômée — France</div></div></div></div>
+      <div class="testimonial-card"><div class="testimonial-quote">"</div><p class="testimonial-text">L'optimisation LinkedIn a rendu mon profil plus visible et plus lisible. J'ai reçu davantage de sollicitations depuis la mise à jour.</p><div class="testimonial-author"><div class="testimonial-avatar">AL</div><div><div class="testimonial-name">Antoine Leduc</div><div class="testimonial-role">Business Analyst — Canada</div></div></div></div>
+      <div class="testimonial-card"><div class="testimonial-quote">"</div><p class="testimonial-text">L'accompagnement a permis de clarifier mon positionnement. Mon CV est désormais plus lisible et mon profil LinkedIn bien plus cohérent avec mes objectifs.</p><div class="testimonial-author"><div class="testimonial-avatar">CM</div><div><div class="testimonial-name">Claire Moreau</div><div class="testimonial-role">Chargée de communication — France</div></div></div></div>
+      <div class="testimonial-card"><div class="testimonial-quote">"</div><p class="testimonial-text">Un travail structuré et professionnel. La refonte de mon CV m'a donné une bien meilleure confiance pour postuler à des postes de consultant senior.</p><div class="testimonial-author"><div class="testimonial-avatar">JR</div><div><div class="testimonial-name">Julien Renaud</div><div class="testimonial-role">Consultant IT — Suisse</div></div></div></div>
+      <div class="testimonial-card"><div class="testimonial-quote">"</div><p class="testimonial-text">J'apprécie la qualité de la rédaction et l'attention portée aux détails. Le résultat est sobre, professionnel et parfaitement adapté à mon secteur.</p><div class="testimonial-author"><div class="testimonial-avatar">SL</div><div><div class="testimonial-name">Sophie Lambert</div><div class="testimonial-role">Assistante de direction — Belgique</div></div></div></div>
+      <div class="testimonial-card"><div class="testimonial-quote">"</div><p class="testimonial-text">Le pack complet m'a permis d'avoir une image cohérente sur tous mes supports. Le tableau de suivi est un vrai plus pour rester organisé.</p><div class="testimonial-author"><div class="testimonial-avatar">NG</div><div><div class="testimonial-name">Nicolas Gauthier</div><div class="testimonial-role">Responsable commercial — Canada</div></div></div></div>
+      <div class="testimonial-card"><div class="testimonial-quote">"</div><p class="testimonial-text">En tant que jeune diplômée, j'avais du mal à formuler ma valeur ajoutée. Le CV et la lettre transmis sont clairs, précis et bien plus convaincants.</p><div class="testimonial-author"><div class="testimonial-avatar">CB</div><div><div class="testimonial-name">Camille Bernard</div><div class="testimonial-role">Jeune diplômée — France</div></div></div></div>
+      <div class="testimonial-card"><div class="testimonial-quote">"</div><p class="testimonial-text">L'optimisation LinkedIn a rendu mon profil plus visible et plus lisible. J'ai reçu davantage de sollicitations depuis la mise à jour.</p><div class="testimonial-author"><div class="testimonial-avatar">AL</div><div><div class="testimonial-name">Antoine Leduc</div><div class="testimonial-role">Business Analyst — Canada</div></div></div></div>
     </div>
     <div class="testimonials-row row-2">
-      <div class="testimonial-card"><div class="testimonial-quote">"</div><p class="testimonial-text">Le service est rapide, professionnel et la communication tr&egrave;s agr&eacute;able. Le r&eacute;sultat correspond exactement &agrave; ce que j'attendais pour mes candidatures RH.</p><div class="testimonial-author"><div class="testimonial-avatar">EC</div><div><div class="testimonial-name">Emilie Caron</div><div class="testimonial-role">Profil RH &mdash; Belgique</div></div></div></div>
-      <div class="testimonial-card"><div class="testimonial-quote">"</div><p class="testimonial-text">Une approche m&eacute;thodique qui m'a permis de mieux structurer mon parcours. Les documents livr&eacute;s sont directement utilisables et tr&egrave;s bien pr&eacute;sent&eacute;s.</p><div class="testimonial-author"><div class="testimonial-avatar">MP</div><div><div class="testimonial-name">Maxime Pelletier</div><div class="testimonial-role">Gestionnaire de projet &mdash; Canada</div></div></div></div>
-      <div class="testimonial-card"><div class="testimonial-quote">"</div><p class="testimonial-text">En reconversion, j'avais besoin d'un regard ext&eacute;rieur pour revaloriser mon profil. Le travail r&eacute;alis&eacute; m'a aid&eacute;e &agrave; aborder cette transition avec plus d'assurance.</p><div class="testimonial-author"><div class="testimonial-avatar">IT</div><div><div class="testimonial-name">Isabelle Tremblay</div><div class="testimonial-role">Candidate en reconversion &mdash; Suisse</div></div></div></div>
-      <div class="testimonial-card"><div class="testimonial-quote">"</div><p class="testimonial-text">Le positionnement de mon profil finance est maintenant beaucoup plus clair. La pr&eacute;sentation est soign&eacute;e et adapt&eacute;e aux standards du march&eacute; canadien.</p><div class="testimonial-author"><div class="testimonial-avatar">MB</div><div><div class="testimonial-name">Mathieu Bouchard</div><div class="testimonial-role">Profil finance &mdash; Canada</div></div></div></div>
-      <div class="testimonial-card"><div class="testimonial-quote">"</div><p class="testimonial-text">Un accompagnement efficace et respectueux. Les livrables sont de qualit&eacute; et la mise en forme est tr&egrave;s &eacute;l&eacute;gante. Je recommande sans h&eacute;siter.</p><div class="testimonial-author"><div class="testimonial-avatar">LD</div><div><div class="testimonial-name">Laurence Dupuis</div><div class="testimonial-role">Responsable administrative &mdash; France</div></div></div></div>
-      <div class="testimonial-card"><div class="testimonial-quote">"</div><p class="testimonial-text">Le service est rapide, professionnel et la communication tr&egrave;s agr&eacute;able. Le r&eacute;sultat correspond exactement &agrave; ce que j'attendais pour mes candidatures RH.</p><div class="testimonial-author"><div class="testimonial-avatar">EC</div><div><div class="testimonial-name">Emilie Caron</div><div class="testimonial-role">Profil RH &mdash; Belgique</div></div></div></div>
-      <div class="testimonial-card"><div class="testimonial-quote">"</div><p class="testimonial-text">Une approche m&eacute;thodique qui m'a permis de mieux structurer mon parcours. Les documents livr&eacute;s sont directement utilisables et tr&egrave;s bien pr&eacute;sent&eacute;s.</p><div class="testimonial-author"><div class="testimonial-avatar">MP</div><div><div class="testimonial-name">Maxime Pelletier</div><div class="testimonial-role">Gestionnaire de projet &mdash; Canada</div></div></div></div>
-      <div class="testimonial-card"><div class="testimonial-quote">"</div><p class="testimonial-text">En reconversion, j'avais besoin d'un regard ext&eacute;rieur pour revaloriser mon profil. Le travail r&eacute;alis&eacute; m'a aid&eacute;e &agrave; aborder cette transition avec plus d'assurance.</p><div class="testimonial-author"><div class="testimonial-avatar">IT</div><div><div class="testimonial-name">Isabelle Tremblay</div><div class="testimonial-role">Candidate en reconversion &mdash; Suisse</div></div></div></div>
-      <div class="testimonial-card"><div class="testimonial-quote">"</div><p class="testimonial-text">Le positionnement de mon profil finance est maintenant beaucoup plus clair. La pr&eacute;sentation est soign&eacute;e et adapt&eacute;e aux standards du march&eacute; canadien.</p><div class="testimonial-author"><div class="testimonial-avatar">MB</div><div><div class="testimonial-name">Mathieu Bouchard</div><div class="testimonial-role">Profil finance &mdash; Canada</div></div></div></div>
-      <div class="testimonial-card"><div class="testimonial-quote">"</div><p class="testimonial-text">Un accompagnement efficace et respectueux. Les livrables sont de qualit&eacute; et la mise en forme est tr&egrave;s &eacute;l&eacute;gante. Je recommande sans h&eacute;siter.</p><div class="testimonial-author"><div class="testimonial-avatar">LD</div><div><div class="testimonial-name">Laurence Dupuis</div><div class="testimonial-role">Responsable administrative &mdash; France</div></div></div></div>
+      <div class="testimonial-card"><div class="testimonial-quote">"</div><p class="testimonial-text">Le service est rapide, professionnel et la communication très agréable. Le résultat correspond exactement à ce que j'attendais pour mes candidatures RH.</p><div class="testimonial-author"><div class="testimonial-avatar">EC</div><div><div class="testimonial-name">Emilie Caron</div><div class="testimonial-role">Profil RH — Belgique</div></div></div></div>
+      <div class="testimonial-card"><div class="testimonial-quote">"</div><p class="testimonial-text">Une approche méthodique qui m'a permis de mieux structurer mon parcours. Les documents livrés sont directement utilisables et très bien présentés.</p><div class="testimonial-author"><div class="testimonial-avatar">MP</div><div><div class="testimonial-name">Maxime Pelletier</div><div class="testimonial-role">Gestionnaire de projet — Canada</div></div></div></div>
+      <div class="testimonial-card"><div class="testimonial-quote">"</div><p class="testimonial-text">En reconversion, j'avais besoin d'un regard extérieur pour revaloriser mon profil. Le travail réalisé m'a aidée à aborder cette transition avec plus d'assurance.</p><div class="testimonial-author"><div class="testimonial-avatar">IT</div><div><div class="testimonial-name">Isabelle Tremblay</div><div class="testimonial-role">Candidate en reconversion — Suisse</div></div></div></div>
+      <div class="testimonial-card"><div class="testimonial-quote">"</div><p class="testimonial-text">Le positionnement de mon profil finance est maintenant beaucoup plus clair. La présentation est soignée et adaptée aux standards du marché canadien.</p><div class="testimonial-author"><div class="testimonial-avatar">MB</div><div><div class="testimonial-name">Mathieu Bouchard</div><div class="testimonial-role">Profil finance — Canada</div></div></div></div>
+      <div class="testimonial-card"><div class="testimonial-quote">"</div><p class="testimonial-text">Un accompagnement efficace et respectueux. Les livrables sont de qualité et la mise en forme est très élégante. Je recommande sans hésiter.</p><div class="testimonial-author"><div class="testimonial-avatar">LD</div><div><div class="testimonial-name">Laurence Dupuis</div><div class="testimonial-role">Responsable administrative — France</div></div></div></div>
+      <div class="testimonial-card"><div class="testimonial-quote">"</div><p class="testimonial-text">Le service est rapide, professionnel et la communication très agréable. Le résultat correspond exactement à ce que j'attendais pour mes candidatures RH.</p><div class="testimonial-author"><div class="testimonial-avatar">EC</div><div><div class="testimonial-name">Emilie Caron</div><div class="testimonial-role">Profil RH — Belgique</div></div></div></div>
+      <div class="testimonial-card"><div class="testimonial-quote">"</div><p class="testimonial-text">Une approche méthodique qui m'a permis de mieux structurer mon parcours. Les documents livrés sont directement utilisables et très bien présentés.</p><div class="testimonial-author"><div class="testimonial-avatar">MP</div><div><div class="testimonial-name">Maxime Pelletier</div><div class="testimonial-role">Gestionnaire de projet — Canada</div></div></div></div>
+      <div class="testimonial-card"><div class="testimonial-quote">"</div><p class="testimonial-text">En reconversion, j'avais besoin d'un regard extérieur pour revaloriser mon profil. Le travail réalisé m'a aidée à aborder cette transition avec plus d'assurance.</p><div class="testimonial-author"><div class="testimonial-avatar">IT</div><div><div class="testimonial-name">Isabelle Tremblay</div><div class="testimonial-role">Candidate en reconversion — Suisse</div></div></div></div>
+      <div class="testimonial-card"><div class="testimonial-quote">"</div><p class="testimonial-text">Le positionnement de mon profil finance est maintenant beaucoup plus clair. La présentation est soignée et adaptée aux standards du marché canadien.</p><div class="testimonial-author"><div class="testimonial-avatar">MB</div><div><div class="testimonial-name">Mathieu Bouchard</div><div class="testimonial-role">Profil finance — Canada</div></div></div></div>
+      <div class="testimonial-card"><div class="testimonial-quote">"</div><p class="testimonial-text">Un accompagnement efficace et respectueux. Les livrables sont de qualité et la mise en forme est très élégante. Je recommande sans hésiter.</p><div class="testimonial-author"><div class="testimonial-avatar">LD</div><div><div class="testimonial-name">Laurence Dupuis</div><div class="testimonial-role">Responsable administrative — France</div></div></div></div>
     </div>
   </div>
 </section>
 
 <section class="section section-accent" id="faq">
   <div class="container">
-    <div class="section-eyebrow">Questions fr&eacute;quentes</div>
+    <div class="section-eyebrow">Questions fréquentes</div>
     <h2 class="section-title">Tout ce que vous devez savoir</h2>
-    <p class="section-subtitle">Les r&eacute;ponses aux questions les plus courantes pour avancer en toute confiance.</p>
+    <p class="section-subtitle">Les réponses aux questions les plus courantes pour avancer en toute confiance.</p>
     <div class="faq-list">
-      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">En combien de temps vais-je recevoir mon livrable ?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">Les d&eacute;lais varient selon l'offre choisie : comptez 1 &agrave; 3 jours ouvr&eacute;s pour l'optimisation LinkedIn, et 2 &agrave; 3 jours ouvr&eacute;s pour les offres incluant le CV et la lettre de motivation.</div></div></div>
-      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">Les documents sont-ils modifiables ?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">Oui, tous les documents livr&eacute;s sont fournis en formats modifiables (Word et/ou PDF). Vous pouvez les adapter &agrave; vos besoins futurs en toute autonomie.</div></div></div>
-      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">Le CV est-il optimis&eacute; ATS ?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">Absolument. Chaque CV est con&ccedil;u pour &ecirc;tre compatible avec les syst&egrave;mes de suivi des candidatures (ATS), tout en restant visuellement professionnel et agr&eacute;able &agrave; lire par un recruteur.</div></div></div>
-      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">Comment se passe le paiement ?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">Le paiement s'effectue en ligne via PayPal de mani&egrave;re s&eacute;curis&eacute;e. Vous pouvez payer par carte bancaire ou via votre compte PayPal.</div></div></div>
-      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">Que contient le diagnostic gratuit ?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">Le diagnostic gratuit est une analyse personnalis&eacute;e de votre profil : points forts, axes d'am&eacute;lioration de votre CV et LinkedIn, recommandations strat&eacute;giques. Vous recevez un rapport complet sous 24h.</div></div></div>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">En combien de temps vais-je recevoir mon livrable ?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">Les délais varient selon l'offre choisie : comptez 1 à 3 jours ouvrés pour l'optimisation LinkedIn, et 2 à 3 jours ouvrés pour les offres incluant le CV et la lettre de motivation.</div></div></div>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">Les documents sont-ils modifiables ?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">Oui, tous les documents livrés sont fournis en formats modifiables (Word et/ou PDF). Vous pouvez les adapter à vos besoins futurs en toute autonomie.</div></div></div>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">Le CV est-il optimisé ATS ?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">Absolument. Chaque CV est conçu pour être compatible avec les systèmes de suivi des candidatures (ATS), tout en restant visuellement professionnel et agréable à lire par un recruteur.</div></div></div>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">Comment se passe le paiement ?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">Le paiement s'effectue en ligne via PayPal de manière sécurisée. Vous pouvez payer par carte bancaire ou via votre compte PayPal.</div></div></div>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">Que contient le diagnostic gratuit ?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">Le diagnostic gratuit est une analyse personnalisée de votre profil : points forts, axes d'amélioration de votre CV et LinkedIn, recommandations stratégiques. Vous recevez un rapport complet sous 24h.</div></div></div>
     </div>
   </div>
 </section>
 
 <section class="final-cta">
   <div class="container">
-    <div class="section-eyebrow">Passez &agrave; l'action</div>
-    <h2 class="section-title">Choisissez l'offre la plus adapt&eacute;e &agrave; votre objectif</h2>
+    <div class="section-eyebrow">Passez à l'action</div>
+    <h2 class="section-title">Choisissez l'offre la plus adaptée à votre objectif</h2>
     <p class="section-subtitle">Une solution claire, rapide et professionnelle pour valoriser votre image.</p>
     <div class="final-cta-buttons">
       <div class="final-cta-card fade-up">
         <div class="final-cta-card-title">Pack complet</div>
-        <div class="final-cta-card-price">45 &euro;</div>
-        <div class="final-cta-card-price-old">Prix habituel : 60 &euro;</div>
-        <button class="cta-btn" onclick="openModal('https://www.paypal.com/ncp/payment/YN3NBSLFN4TBJ','Pack de valorisation totale','45 &euro;')">B&eacute;n&eacute;ficier de cette offre</button>
+        <div class="final-cta-card-price">60 €</div>
+        <div class="final-cta-card-price-old">Prix habituel : 95 €</div>
+        <button class="cta-btn" onclick="openModal('https://www.paypal.com/ncp/payment/X28ZHEKETU8FA','Pack de valorisation totale','60 €')">Bénéficier de cette offre</button>
+      </div>
+      <div class="final-cta-card fade-up">
+        <div class="final-cta-card-title">Pack Tremplin</div>
+        <div class="final-cta-card-price">30 €</div>
+        <div class="final-cta-card-price-old">Étudiants & Chômeurs</div>
+        <button class="cta-btn" onclick="openModal('LIEN_PAYPAL_30_EUROS','Pack Tremplin','30 €')">Soumettre mon dossier</button>
       </div>
       <div class="final-cta-card fade-up">
         <div class="final-cta-card-title">CV + Lettre</div>
-        <div class="final-cta-card-price">30 &euro;</div>
+        <div class="final-cta-card-price">45 €</div>
         <div class="final-cta-card-spacer"></div>
-        <button class="cta-btn" onclick="openModal('https://www.paypal.com/ncp/payment/GTLRWNREXFVML','CV + Lettre de motivation','30 &euro;')">Choisir cette formule</button>
-      </div>
-      <div class="final-cta-card fade-up">
-        <div class="final-cta-card-title">LinkedIn</div>
-        <div class="final-cta-card-price">30 &euro;</div>
-        <div class="final-cta-card-spacer"></div>
-        <button class="cta-btn" onclick="openModal('https://www.paypal.com/ncp/payment/BNBURFRZWZZ4W','Optimisation LinkedIn','30 &euro;')">Acc&eacute;der &agrave; cette optimisation</button>
+        <button class="cta-btn" onclick="openModal('https://www.paypal.com/ncp/payment/GTLRWNREXFVML','CV + Lettre de motivation','45 €')">Choisir cette formule</button>
       </div>
     </div>
   </div>
@@ -514,7 +620,7 @@ textarea.form-control{resize:vertical;min-height:80px;line-height:1.6}
   <div class="container">
     <div class="contact-inner">
       <h2 class="section-title">Une question ?</h2>
-      <p class="contact-text">Une question avant de d&eacute;marrer ? Contactez-nous pour &ecirc;tre orient&eacute; vers l'offre la plus adapt&eacute;e.</p>
+      <p class="contact-text">Une question avant de démarrer ? Contactez-nous pour être orienté vers l'offre la plus adaptée.</p>
       <div class="contact-methods">
         <a href="#" onclick="window.location.href='mai'+'lto:talentiques@gm'+'ail.com';return false;" class="contact-method"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>talentiques&#64;gmail.com</a>
         <a href="https://wa.me/212663039597" class="contact-method" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>+212 663 039 597</a>
@@ -526,26 +632,24 @@ textarea.form-control{resize:vertical;min-height:80px;line-height:1.6}
 <footer class="footer">
   <div class="container">
     <div class="footer-inner">
-      <div class="footer-brand"><div class="logo">TalentiQues</div><p>Valorisation de l'image professionnelle. Des supports clairs, coh&eacute;rents et cr&eacute;dibles pour renforcer votre positionnement sur le march&eacute;.</p></div>
-      <div class="footer-col"><h4>Navigation</h4><a href="#mission">Mission</a><a href="#offres">Offres</a><a href="#methode">M&eacute;thode</a><a href="#avis">Avis</a><a href="#faq">FAQ</a></div>
+      <div class="footer-brand"><div class="logo">TalentiQues</div><p>Valorisation de l'image professionnelle. Des supports clairs, cohérents et crédibles pour renforcer votre positionnement sur le marché.</p></div>
+      <div class="footer-col"><h4>Navigation</h4><a href="#mission">Mission</a><a href="#offres">Offres</a><a href="#methode">Méthode</a><a href="#avis">Avis</a><a href="#faq">FAQ</a></div>
       <div class="footer-col"><h4>Contact</h4><a href="#" onclick="window.location.href='mai'+'lto:talentiques@gm'+'ail.com';return false;">talentiques&#64;gmail.com</a><a href="https://wa.me/212663039597">+212 663 039 597</a></div>
-      <div class="footer-col"><h4>L&eacute;gal</h4><a href="#">Mentions l&eacute;gales</a><a href="#">Conditions g&eacute;n&eacute;rales</a><a href="#">Politique de confidentialit&eacute;</a></div>
+      <div class="footer-col"><h4>Légal</h4><a href="#">Mentions légales</a><a href="#">Conditions générales</a><a href="#">Politique de confidentialité</a></div>
     </div>
-    <div class="footer-bottom"><span>2025 Talentiques. Tous droits r&eacute;serv&eacute;s.</span><span>France &mdash; Suisse &mdash; Belgique &mdash; Canada &mdash; International</span></div>
+    <div class="footer-bottom"><span>2025 Talentiques. Tous droits réservés.</span><span>France — Suisse — Belgique — Canada — International</span></div>
   </div>
 </footer>
 
-<!-- iframes cachées pour soumission Salesforce sans navigation -->
 <iframe name="sf-hidden-frame" id="sf-hidden-frame" style="display:none" aria-hidden="true"></iframe>
 <iframe name="diag-hidden-frame" id="diag-hidden-frame" style="display:none" aria-hidden="true"></iframe>
 
-<!-- MODAL PAIEMENT -->
 <div class="modal-backdrop" id="contactModal">
   <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <button class="modal-close-btn" onclick="closeModal()" aria-label="Fermer"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
-    <div class="modal-offer-tag"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span id="modalOfferName">Offre</span> &mdash; <span id="modalOfferPrice"></span></div>
+    <div class="modal-offer-tag"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span id="modalOfferName">Offre</span> — <span id="modalOfferPrice"></span></div>
     <h2 class="modal-title" id="modalTitle">Finalisez votre demande</h2>
-    <p class="modal-subtitle">Renseignez vos coordonn&eacute;es ci-dessous. Vous serez ensuite redirig&eacute; vers la page de paiement s&eacute;curis&eacute;.</p>
+    <p class="modal-subtitle">Renseignez vos coordonnées ci-dessous. Vous serez ensuite redirigé vers la page de paiement sécurisé.</p>
     <div class="modal-divider"></div>
     <form id="sf-form" action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8" method="POST" target="sf-hidden-frame">
       <input type="hidden" name="oid" value="00DQH00000LGRD3">
@@ -556,39 +660,37 @@ textarea.form-control{resize:vertical;min-height:80px;line-height:1.6}
       <div class="form-group"><label for="sf-nom">Nom complet <span class="req">*</span></label><input type="text" id="sf-nom" name="last_name" class="form-control" placeholder="Ex : Marie Dupont" required autocomplete="name"></div>
       <div class="form-row">
         <div class="form-group"><label for="sf-email">E-mail <span class="req">*</span></label><input type="email" id="sf-email" name="email" class="form-control" placeholder="vous@email.com" required autocomplete="email"></div>
-        <div class="form-group"><label for="sf-phone">T&eacute;l&eacute;phone</label><input type="tel" id="sf-phone" name="phone" class="form-control" placeholder="+33 6 00 00 00 00" autocomplete="tel"></div>
+        <div class="form-group"><label for="sf-phone">Téléphone</label><input type="tel" id="sf-phone" name="phone" class="form-control" placeholder="+33 6 00 00 00 00" autocomplete="tel"></div>
       </div>
-      <div class="form-group"><label for="sf-country">Pays <span class="req">*</span></label><select id="sf-country" name="country" class="form-control" required><option value="" disabled selected>S&eacute;lectionnez votre pays</option><option value="France">France</option><option value="Belgium">Belgique</option><option value="Switzerland">Suisse</option><option value="Canada">Canada</option><option value="Morocco">Maroc</option><option value="Algeria">Alg&eacute;rie</option><option value="Tunisia">Tunisie</option><option value="Luxembourg">Luxembourg</option><option value="Other">Autre</option></select></div>
-      <div class="form-group"><label for="sf-statut">Statut actuel <span class="req">*</span></label><select id="sf-statut" class="form-control" required><option value="" disabled selected>S&eacute;lectionnez votre statut</option><option value="Etudiant">&Eacute;tudiant</option><option value="En poste">En poste</option><option value="En recherche emploi">En recherche d'emploi</option><option value="En recherche stage">En recherche de stage</option><option value="En recherche alternance">En recherche d'alternance</option><option value="Alternant">Alternant</option><option value="Freelance">Freelance</option></select></div>
-      <div class="form-group"><label for="sf-objectif">D&eacute;crivez votre objectif professionnel <span class="req">*</span></label><textarea id="sf-objectif" class="form-control" rows="3" required placeholder="D&eacute;crivez pr&eacute;cis&eacute;ment votre objectif : poste vis&eacute;, secteur, situation actuelle&hellip;"></textarea></div>
-      <div class="form-group"><label for="sf-difficulte">Difficult&eacute; principale</label><select id="sf-difficulte" class="form-control"><option value="" disabled selected>S&eacute;lectionnez votre difficult&eacute;</option><option value="Je postule sans reponses">Je postule sans r&eacute;ponses</option><option value="Je debute et je suis perdu">Je d&eacute;bute et je suis perdu</option><option value="CV LinkedIn peu valorisant">CV / LinkedIn peu valorisant</option><option value="Reconversion en cours">Reconversion en cours</option><option value="Optimisation positionnement">Optimisation de positionnement</option><option value="Autre raison">Autre raison</option></select></div>
+      <div class="form-group"><label for="sf-country">Pays <span class="req">*</span></label><select id="sf-country" name="country" class="form-control" required><option value="" disabled selected>Sélectionnez votre pays</option><option value="France">France</option><option value="Belgium">Belgique</option><option value="Switzerland">Suisse</option><option value="Canada">Canada</option><option value="Morocco">Maroc</option><option value="Algeria">Algérie</option><option value="Tunisia">Tunisie</option><option value="Luxembourg">Luxembourg</option><option value="Other">Autre</option></select></div>
+      <div class="form-group"><label for="sf-statut">Statut actuel <span class="req">*</span></label><select id="sf-statut" class="form-control" required><option value="" disabled selected>Sélectionnez votre statut</option><option value="Etudiant">Étudiant</option><option value="En poste">En poste</option><option value="En recherche emploi">En recherche d'emploi</option><option value="En recherche stage">En recherche de stage</option><option value="En recherche alternance">En recherche d'alternance</option><option value="Alternant">Alternant</option><option value="Freelance">Freelance</option></select></div>
+      <div class="form-group"><label for="sf-objectif">Décrivez votre objectif professionnel <span class="req">*</span></label><textarea id="sf-objectif" class="form-control" rows="3" required placeholder="Décrivez précisément votre objectif : poste visé, secteur, situation actuelle…"></textarea></div>
+      <div class="form-group"><label for="sf-difficulte">Difficulté principale</label><select id="sf-difficulte" class="form-control"><option value="" disabled selected>Sélectionnez votre difficulté</option><option value="Je postule sans reponses">Je postule sans réponses</option><option value="Je debute et je suis perdu">Je débute et je suis perdu</option><option value="CV LinkedIn peu valorisant">CV / LinkedIn peu valorisant</option><option value="Reconversion en cours">Reconversion en cours</option><option value="Optimisation positionnement">Optimisation de positionnement</option><option value="Autre raison">Autre raison</option></select></div>
       <div class="form-group"><label for="sf-linkedin">Profil LinkedIn</label><input type="url" id="sf-linkedin" class="form-control" placeholder="https://linkedin.com/in/votre-profil"></div>
       <div class="form-group">
-        <label>T&eacute;l&eacute;charger votre CV (PDF ou Word)</label>
-        <label class="file-upload-label" for="sf-cv-upload"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg><span id="sf-cv-label">Cliquez pour s&eacute;lectionner votre CV</span></label>
+        <label>Télécharger votre CV (PDF ou Word)</label>
+        <label class="file-upload-label" for="sf-cv-upload"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg><span id="sf-cv-label">Cliquez pour sélectionner votre CV</span></label>
         <input type="file" id="sf-cv-upload" class="file-upload-input" accept=".pdf,.doc,.docx" onchange="updateFileName('sf-cv-upload','sf-cv-label','sf-cv-name')">
         <div class="file-name-display" id="sf-cv-name"></div>
       </div>
-      <div class="form-group"><label for="sf-infos">Informations compl&eacute;mentaires</label><textarea id="sf-infos" class="form-control" rows="3" placeholder="Partagez toute information utile : exp&eacute;riences, contraintes particuli&egrave;res&hellip;"></textarea></div>
+      <div class="form-group"><label for="sf-infos">Informations complémentaires</label><textarea id="sf-infos" class="form-control" rows="3" placeholder="Partagez toute information utile : expériences, contraintes particulières…"></textarea></div>
       <button type="submit" class="modal-submit" id="modalSubmitBtn">Continuer vers le paiement <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M7 7h10v10"/></svg></button>
-      <p class="modal-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:13px;height:13px;display:inline;vertical-align:middle;margin-right:4px"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Paiement s&eacute;curis&eacute; via PayPal &mdash; carte bancaire accept&eacute;e sans compte PayPal.</p>
+      <p class="modal-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:13px;height:13px;display:inline;vertical-align:middle;margin-right:4px"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Paiement sécurisé via PayPal — carte bancaire acceptée sans compte PayPal.</p>
     </form>
   </div>
 </div>
 
-<!-- MODAL DIAGNOSTIC -->
 <div class="modal-backdrop" id="diagModal">
   <div class="modal-box" id="diag-modal-box" role="dialog" aria-modal="true">
     <button class="modal-close-btn" onclick="closeDiagModal()" aria-label="Fermer"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
     <div class="diag-banner">
       <div class="diag-banner-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
-      <div><div class="diag-banner-title">Diagnostic gratuit de votre candidature</div><div class="diag-banner-text">Remplissez ce formulaire et recevez <strong>sous 24h</strong> un rapport personnalis&eacute; d'&eacute;volution professionnelle : points forts, axes d'am&eacute;lioration de votre CV, LinkedIn et strat&eacute;gie de candidature.</div></div>
+      <div><div class="diag-banner-title">Diagnostic gratuit de votre candidature</div><div class="diag-banner-text">Remplissez ce formulaire et recevez <strong>sous 24h</strong> un rapport personnalisé d'évolution professionnelle : points forts, axes d'amélioration de votre CV, LinkedIn et stratégie de candidature.</div></div>
     </div>
-    <div class="modal-offer-tag"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Gratuit &mdash; sans engagement</div>
+    <div class="modal-offer-tag"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Gratuit — sans engagement</div>
     <h2 class="modal-title">Obtenez votre diagnostic gratuit</h2>
-    <p class="modal-subtitle">Partagez votre profil. Nous analysons votre dossier et vous envoyons un rapport d'&eacute;volution sous 24h.</p>
+    <p class="modal-subtitle">Partagez votre profil. Nous analysons votre dossier et vous envoyons un rapport d'évolution sous 24h.</p>
     <div class="modal-divider"></div>
-    <!-- Formulaire Salesforce — soumission native vers iframe cachée -->
     <form id="diag-form" action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8" method="POST" target="diag-hidden-frame">
       <input type="hidden" name="oid" value="00DQH00000LGRD3">
       <input type="hidden" name="retURL" value="https://offerstalentiques.space">
@@ -598,35 +700,33 @@ textarea.form-control{resize:vertical;min-height:80px;line-height:1.6}
       <div class="form-group"><label for="diag-nom">Nom complet <span class="req">*</span></label><input type="text" id="diag-nom" name="last_name" class="form-control" placeholder="Ex : Marie Dupont" required autocomplete="name"></div>
       <div class="form-row">
         <div class="form-group"><label for="diag-email">E-mail <span class="req">*</span></label><input type="email" id="diag-email" name="email" class="form-control" placeholder="vous@email.com" required autocomplete="email"></div>
-        <div class="form-group"><label for="diag-phone">T&eacute;l&eacute;phone</label><input type="tel" id="diag-phone" name="phone" class="form-control" placeholder="+33 6 00 00 00 00" autocomplete="tel"></div>
+        <div class="form-group"><label for="diag-phone">Téléphone</label><input type="tel" id="diag-phone" name="phone" class="form-control" placeholder="+33 6 00 00 00 00" autocomplete="tel"></div>
       </div>
-      <div class="form-group"><label for="diag-country">Pays <span class="req">*</span></label><select id="diag-country" name="country" class="form-control" required><option value="" disabled selected>S&eacute;lectionnez votre pays</option><option value="France">France</option><option value="Belgium">Belgique</option><option value="Switzerland">Suisse</option><option value="Canada">Canada</option><option value="Morocco">Maroc</option><option value="Algeria">Alg&eacute;rie</option><option value="Tunisia">Tunisie</option><option value="Luxembourg">Luxembourg</option><option value="Other">Autre</option></select></div>
-      <div class="form-group"><label for="diag-statut">Statut actuel</label><select id="diag-statut" class="form-control"><option value="" disabled selected>S&eacute;lectionnez votre statut</option><option value="Etudiant">&Eacute;tudiant</option><option value="En poste">En poste</option><option value="En recherche emploi">En recherche d'emploi</option><option value="En recherche stage">En recherche de stage</option><option value="En recherche alternance">En recherche d'alternance</option><option value="Alternant">Alternant</option><option value="Freelance">Freelance</option></select></div>
-      <div class="form-group"><label for="diag-objectif">D&eacute;crivez votre objectif professionnel <span class="req">*</span></label><textarea id="diag-objectif" class="form-control" rows="3" required placeholder="D&eacute;crivez pr&eacute;cis&eacute;ment votre objectif : poste vis&eacute;, secteur, situation actuelle&hellip;"></textarea></div>
-      <div class="form-group"><label for="diag-difficulte">Difficult&eacute; principale</label><select id="diag-difficulte" class="form-control"><option value="" disabled selected>S&eacute;lectionnez votre difficult&eacute;</option><option value="Je postule sans reponses">Je postule sans r&eacute;ponses</option><option value="Je debute et je suis perdu">Je d&eacute;bute et je suis perdu</option><option value="CV LinkedIn peu valorisant">CV / LinkedIn peu valorisant</option><option value="Reconversion en cours">Reconversion en cours</option><option value="Optimisation positionnement">Optimisation de positionnement</option><option value="Autre raison">Autre raison</option></select></div>
+      <div class="form-group"><label for="diag-country">Pays <span class="req">*</span></label><select id="diag-country" name="country" class="form-control" required><option value="" disabled selected>Sélectionnez votre pays</option><option value="France">France</option><option value="Belgium">Belgique</option><option value="Switzerland">Suisse</option><option value="Canada">Canada</option><option value="Morocco">Maroc</option><option value="Algeria">Algérie</option><option value="Tunisia">Tunisie</option><option value="Luxembourg">Luxembourg</option><option value="Other">Autre</option></select></div>
+      <div class="form-group"><label for="diag-statut">Statut actuel</label><select id="diag-statut" class="form-control"><option value="" disabled selected>Sélectionnez votre statut</option><option value="Etudiant">Étudiant</option><option value="En poste">En poste</option><option value="En recherche emploi">En recherche d'emploi</option><option value="En recherche stage">En recherche de stage</option><option value="En recherche alternance">En recherche d'alternance</option><option value="Alternant">Alternant</option><option value="Freelance">Freelance</option></select></div>
+      <div class="form-group"><label for="diag-objectif">Décrivez votre objectif professionnel <span class="req">*</span></label><textarea id="diag-objectif" class="form-control" rows="3" required placeholder="Décrivez précisément votre objectif : poste visé, secteur, situation actuelle…"></textarea></div>
+      <div class="form-group"><label for="diag-difficulte">Difficulté principale</label><select id="diag-difficulte" class="form-control"><option value="" disabled selected>Sélectionnez votre difficulté</option><option value="Je postule sans reponses">Je postule sans réponses</option><option value="Je debute et je suis perdu">Je débute et je suis perdu</option><option value="CV LinkedIn peu valorisant">CV / LinkedIn peu valorisant</option><option value="Reconversion en cours">Reconversion en cours</option><option value="Optimisation positionnement">Optimisation de positionnement</option><option value="Autre raison">Autre raison</option></select></div>
       <div class="form-group"><label for="diag-linkedin">Profil LinkedIn</label><input type="url" id="diag-linkedin" class="form-control" placeholder="https://linkedin.com/in/votre-profil"></div>
-      <div class="form-group"><label for="diag-infos">Informations compl&eacute;mentaires</label><textarea id="diag-infos" class="form-control" rows="2" placeholder="Secteur vis&eacute;, niveau d'&eacute;tudes, exp&eacute;riences, difficult&eacute;s rencontr&eacute;es&hellip;"></textarea></div>
+      <div class="form-group"><label for="diag-infos">Informations complémentaires</label><textarea id="diag-infos" class="form-control" rows="2" placeholder="Secteur visé, niveau d'études, expériences, difficultés rencontrées…"></textarea></div>
       <button type="submit" class="modal-submit" id="diagSubmitBtn">Recevoir mon diagnostic gratuit <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M7 7h10v10"/></svg></button>
-      <p class="modal-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:13px;height:13px;display:inline;vertical-align:middle;margin-right:4px"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Rapport envoy&eacute; sous 24h &agrave; votre adresse e-mail &mdash; 100% gratuit, sans engagement.</p>
+      <p class="modal-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:13px;height:13px;display:inline;vertical-align:middle;margin-right:4px"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Rapport envoyé sous 24h à votre adresse e-mail — 100% gratuit, sans engagement.</p>
     </form>
-    <!-- MESSAGE DE CONFIRMATION -->
     <div id="diag-confirm" style="display:none;flex-direction:column;align-items:center;text-align:center;padding:20px 0">
       <div style="width:72px;height:72px;border-radius:50%;background:rgba(6,131,201,0.1);border:2px solid rgba(6,131,201,0.25);display:flex;align-items:center;justify-content:center;margin:0 auto 24px">
         <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0683C9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
       </div>
-      <h3 style="font-size:20px;font-weight:800;color:#0B1A2F;margin-bottom:12px;letter-spacing:-0.02em">Votre dossier est bien re&ccedil;u !</h3>
+      <h3 style="font-size:20px;font-weight:800;color:#0B1A2F;margin-bottom:12px;letter-spacing:-0.02em">Votre dossier est bien reçu !</h3>
       <p style="font-size:15px;color:#4A607A;line-height:1.7;margin-bottom:8px">Nous allons analyser votre profil avec attention.</p>
-      <p style="font-size:15px;color:#4A607A;line-height:1.7;margin-bottom:20px">Vous recevrez votre <strong style="color:#0683C9">rapport d'&eacute;volution professionnelle personnalis&eacute;</strong> par e-mail <strong style="color:#0B1A2F">dans les 24 heures</strong>.</p>
+      <p style="font-size:15px;color:#4A607A;line-height:1.7;margin-bottom:20px">Vous recevrez votre <strong style="color:#0683C9">rapport d'évolution professionnelle personnalisé</strong> par e-mail <strong style="color:#0B1A2F">dans les 24 heures</strong>.</p>
       <div style="background:rgba(6,131,201,0.06);border:1.5px solid rgba(6,131,201,0.2);border-radius:12px;padding:16px 20px;margin-bottom:28px;width:100%;text-align:left">
         <p style="font-size:14px;font-weight:700;color:#0B1A2F;margin-bottom:8px;display:flex;align-items:center;gap:6px">
           <svg viewBox="0 0 24 24" fill="none" stroke="#0683C9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px;flex-shrink:0"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-          Envoyez votre CV pour acc&eacute;l&eacute;rer votre diagnostic
+          Envoyez votre CV pour accélérer votre diagnostic
         </p>
-        <p style="font-size:13px;color:#4A607A;line-height:1.6;margin-bottom:10px">Joignez votre CV en pi&egrave;ce jointe en cliquant sur le bouton ci-dessous :</p>
-        <!-- BOUTON EMAIL : construit en JS pour contourner Cloudflare email obfuscation -->
+        <p style="font-size:13px;color:#4A607A;line-height:1.6;margin-bottom:10px">Joignez votre CV en pièce jointe en cliquant sur le bouton ci-dessous :</p>
         <button id="cv-email-btn" style="display:inline-flex;align-items:center;gap:8px;background:#0683C9;color:#fff;padding:10px 20px;border-radius:8px;font-size:13px;font-weight:700;border:none;cursor:pointer;font-family:inherit">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          Envoyer mon CV &agrave; talentiques&#64;gmail.com
+          Envoyer mon CV à talentiques&#64;gmail.com
         </button>
       </div>
       <button onclick="closeDiagModal()" style="background:linear-gradient(135deg,#0683C9,#056BA5);color:#fff;padding:14px 36px;border-radius:12px;font-size:15px;font-weight:700;border:none;cursor:pointer;font-family:inherit;box-shadow:0 4px 20px rgba(6,131,201,0.28)">Fermer</button>
@@ -677,17 +777,14 @@ function updateFileName(inputId,labelId,nameId){var input=document.getElementByI
 document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeModal();closeDiagModal();}});
 
 document.addEventListener('DOMContentLoaded',function(){
-  /* Bouton email CV : construit en JS pour éviter l'obfuscation Cloudflare */
   var cvBtn=document.getElementById('cv-email-btn');
   if(cvBtn){cvBtn.addEventListener('click',function(){var u='mailto:'+'talentiques'+'@'+'gmail.com'+'?subject=Mon%20CV%20-%20Diagnostic%20Talentiques';window.location.href=u;});}
 
-  /* Fermer en cliquant sur le fond */
   var cm=document.getElementById('contactModal');
   if(cm)cm.addEventListener('click',function(e){if(e.target===this)closeModal();});
   var dm=document.getElementById('diagModal');
   if(dm)dm.addEventListener('click',function(e){if(e.target===this)closeDiagModal();});
 
-  /* PAIEMENT : soumission native vers iframe sf-hidden-frame + redirect PayPal */
   var sfForm=document.getElementById('sf-form');
   if(sfForm){
     sfForm.addEventListener('submit',function(){
@@ -701,21 +798,17 @@ document.addEventListener('DOMContentLoaded',function(){
       var desc='';
       desc+='Offre : '+offerName+' ('+offerPrice+')\n';
       if(statut) desc+='Statut : '+statut+'\n';
-      if(difficulte) desc+='Difficult\u00e9 : '+difficulte+'\n';
+      if(difficulte) desc+='Difficulté : '+difficulte+'\n';
       if(linkedin) desc+='LinkedIn : '+linkedin+'\n';
       desc+='Objectif : '+objectif+'\n';
       if(infos) desc+='Infos : '+infos;
       document.getElementById('sf-description').value=desc;
       var btn=document.getElementById('modalSubmitBtn');
-      if(btn){btn.disabled=true;btn.textContent='Envoi en cours\u2026';}
-      /* Redirect vers PayPal après délai (le form se soumet en parallèle vers l'iframe) */
+      if(btn){btn.disabled=true;btn.textContent='Envoi en cours…';}
       setTimeout(function(){window.location.href=_paypalUrl;},900);
     });
   }
 
-  /* DIAGNOSTIC : soumission native vers iframe diag-hidden-frame
-     Le form a target="diag-hidden-frame" donc la page ne navigue pas.
-     On remplit description AVANT la soumission native via ce listener. */
   var diagForm=document.getElementById('diag-form');
   if(diagForm){
     diagForm.addEventListener('submit',function(){
@@ -727,15 +820,13 @@ document.addEventListener('DOMContentLoaded',function(){
       var desc='';
       desc+='TYPE : DIAGNOSTIC GRATUIT\n';
       if(statut) desc+='Statut : '+statut+'\n';
-      if(difficulte) desc+='Difficult\u00e9 : '+difficulte+'\n';
+      if(difficulte) desc+='Difficulté : '+difficulte+'\n';
       if(linkedin) desc+='LinkedIn : '+linkedin+'\n';
       desc+='Objectif : '+objectif+'\n';
       if(infos) desc+='Infos : '+infos;
       document.getElementById('diag-description').value=desc;
       var btn=document.getElementById('diagSubmitBtn');
-      if(btn){btn.disabled=true;btn.textContent='Envoi en cours\u2026';}
-      /* La soumission native se fait vers l'iframe (target déjà défini).
-         On affiche la confirmation après 1.4s */
+      if(btn){btn.disabled=true;btn.textContent='Envoi en cours…';}
       setTimeout(function(){
         document.getElementById('diag-form').style.display='none';
         document.getElementById('diag-confirm').style.display='flex';
