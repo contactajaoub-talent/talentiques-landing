@@ -498,7 +498,7 @@ textarea.form-control{resize:vertical;min-height:80px;line-height:1.6}
   </div>
 </section>
 
-<!-- ====== MÉTHODE ====== -->
+<!-- ====== METHODE ====== -->
 <section class="section section-accent" id="methode">
   <div class="container">
     <div class="section-eyebrow">Notre méthode</div>
@@ -852,7 +852,16 @@ function selectBudget(n){
   }
 }
 
-var m=document.getElementById('mobileMenu'),o=document.getElementById('mobileOverlay'),t=document.getElementById('mobileToggle');if(m.classList.contains('active')){closeMobile();}else{m.classList.add('active');o.classList.add('active');t.classList.add('open');document.body.style.overflow='hidden';}}
+// CORRECTION 1 : Ajout de la déclaration de la fonction toggleMobile
+function toggleMobile() {
+  var m=document.getElementById('mobileMenu'),o=document.getElementById('mobileOverlay'),t=document.getElementById('mobileToggle');
+  if(m.classList.contains('active')){
+    closeMobile();
+  }else{
+    m.classList.add('active');o.classList.add('active');t.classList.add('open');document.body.style.overflow='hidden';
+  }
+}
+
 function closeMobile(){document.getElementById('mobileMenu').classList.remove('active');document.getElementById('mobileOverlay').classList.remove('active');document.getElementById('mobileToggle').classList.remove('open');document.body.style.overflow='';}
 
 function toggleFaq(btn){var item=btn.parentElement,answer=item.querySelector('.faq-answer'),isActive=item.classList.contains('active');document.querySelectorAll('.faq-item').forEach(function(i){i.classList.remove('active');i.querySelector('.faq-answer').style.maxHeight=null;});if(!isActive){item.classList.add('active');answer.style.maxHeight=answer.scrollHeight+'px';}}
@@ -947,7 +956,9 @@ document.addEventListener('DOMContentLoaded',function(){
     });
   }
 
-
+  // CORRECTION 2 : Ajout de la définition manquante de la variable sfForm
+  var sfForm=document.getElementById('sf-form');
+  
   if(sfForm){
     sfForm.addEventListener('submit',function(){
       var objectif=document.getElementById('sf-objectif').value.trim();
