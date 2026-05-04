@@ -852,21 +852,7 @@ function selectBudget(n){
   }
 }
 
-function toggleMobile() {
-  var m=document.getElementById('mobileMenu'),
-      o=document.getElementById('mobileOverlay'),
-      t=document.getElementById('mobileToggle');
-  
-  if(m.classList.contains('active')){
-    closeMobile();
-  } else {
-    m.classList.add('active');
-    o.classList.add('active');
-    t.classList.add('open');
-    document.body.style.overflow='hidden';
-  }
-}
-
+function toggleMobile(){var m=document.getElementById('mobileMenu'),o=document.getElementById('mobileOverlay'),t=document.getElementById('mobileToggle');if(m.classList.contains('active')){closeMobile();}else{m.classList.add('active');o.classList.add('active');t.classList.add('open');document.body.style.overflow='hidden';}}
 function closeMobile(){document.getElementById('mobileMenu').classList.remove('active');document.getElementById('mobileOverlay').classList.remove('active');document.getElementById('mobileToggle').classList.remove('open');document.body.style.overflow='';}
 
 function toggleFaq(btn){var item=btn.parentElement,answer=item.querySelector('.faq-answer'),isActive=item.classList.contains('active');document.querySelectorAll('.faq-item').forEach(function(i){i.classList.remove('active');i.querySelector('.faq-answer').style.maxHeight=null;});if(!isActive){item.classList.add('active');answer.style.maxHeight=answer.scrollHeight+'px';}}
@@ -961,7 +947,8 @@ document.addEventListener('DOMContentLoaded',function(){
     });
   }
 
-  var sfForm = document.getElementById('sf-form');
+
+  var sfForm = document.getElementById('sf-form');
   if(sfForm){
     sfForm.addEventListener('submit',function(){
       var objectif=document.getElementById('sf-objectif').value.trim();
