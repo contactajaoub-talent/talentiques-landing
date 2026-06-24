@@ -649,11 +649,20 @@ textarea.form-control{resize:vertical;min-height:80px;line-height:1.6}
     <p class="modal-subtitle">Renseignez vos coordonnées ci-dessous. Vous serez ensuite redirigé vers la page de paiement sécurisé.</p>
     <div class="modal-divider"></div>
     <form id="sf-form" action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8" method="POST" target="sf-hidden-frame">
-      <input type="hidden" name="oid" value="00Dd3000006kclt">
+      <input type="hidden" name="oid" value="00Dd3000008Bhcw">
       <input type="hidden" name="retURL" id="sf-returl" value="https://offerstalentiques.space">
       <input type="hidden" name="lead_source" value="Site web Talentiques">
       <input type="hidden" name="company" value="Particulier">
       <input type="hidden" name="description" id="sf-description" value="">
+      <!-- Salesforce CRM fields -->
+      <input type="hidden" name="00Nd300000AmvSr" value="TalentiQues">
+      <input type="hidden" name="00Nd300000AmgIY" value="Offer Order">
+      <input type="hidden" name="00Nd300000Amve9" id="sf-requested-offer" value="Full Career Package">
+      <input type="hidden" name="00Nd300000AmcIA" id="sf-professional-status" value="">
+      <input type="hidden" name="00Nd300000AmvhN" value="Not Specified">
+      <input type="hidden" name="00Nd300000Amviz" id="sf-linkedin-salesforce" value="">
+      <input type="hidden" name="00Nd300000Amvkb" id="sf-page-url" value="">
+      <input type="hidden" name="00Nd300000AmvmD" value="New">
       <div class="form-group"><label for="sf-nom">Nom complet <span class="req">*</span></label><input type="text" id="sf-nom" name="last_name" class="form-control" placeholder="Ex : Marie Dupont" required autocomplete="name"></div>
       <div class="form-row">
         <div class="form-group"><label for="sf-email">E-mail <span class="req">*</span></label><input type="email" id="sf-email" name="email" class="form-control" placeholder="vous@email.com" required autocomplete="email"></div>
@@ -690,11 +699,20 @@ textarea.form-control{resize:vertical;min-height:80px;line-height:1.6}
     <p class="modal-subtitle">Partagez votre profil. Nous analysons votre dossier et vous envoyons un rapport d'évolution sous 24h.</p>
     <div class="modal-divider"></div>
     <form id="diag-form" action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8" method="POST" target="diag-hidden-frame">
-      <input type="hidden" name="oid" value="00Dd3000006kclt">
+      <input type="hidden" name="oid" value="00Dd3000008Bhcw">
       <input type="hidden" name="retURL" value="https://offerstalentiques.space">
       <input type="hidden" name="lead_source" value="Diagnostic Gratuit Talentiques">
       <input type="hidden" name="company" value="Particulier">
       <input type="hidden" name="description" id="diag-description" value="">
+      <!-- Salesforce CRM fields -->
+      <input type="hidden" name="00Nd300000AmvSr" value="TalentiQues">
+      <input type="hidden" name="00Nd300000AmgIY" value="Free Diagnostic">
+      <input type="hidden" name="00Nd300000Amve9" value="Custom Service">
+      <input type="hidden" name="00Nd300000AmcIA" id="diag-professional-status" value="">
+      <input type="hidden" name="00Nd300000AmvhN" value="Not Specified">
+      <input type="hidden" name="00Nd300000Amviz" id="diag-linkedin-salesforce" value="">
+      <input type="hidden" name="00Nd300000Amvkb" id="diag-page-url" value="">
+      <input type="hidden" name="00Nd300000AmvmD" value="New">
       <div class="form-group"><label for="diag-nom">Nom complet <span class="req">*</span></label><input type="text" id="diag-nom" name="last_name" class="form-control" placeholder="Ex : Marie Dupont" required autocomplete="name"></div>
       <div class="form-row">
         <div class="form-group"><label for="diag-email">E-mail <span class="req">*</span></label><input type="email" id="diag-email" name="email" class="form-control" placeholder="vous@email.com" required autocomplete="email"></div>
@@ -748,11 +766,21 @@ textarea.form-control{resize:vertical;min-height:80px;line-height:1.6}
     <div class="modal-divider"></div>
 
     <form id="accomp-form" action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8" method="POST" target="sf-hidden-frame">
-      <input type="hidden" name="oid" value="00Dd3000006kclt">
+      <input type="hidden" name="oid" value="00Dd3000008Bhcw">
       <input type="hidden" name="retURL" value="https://offerstalentiques.space">
       <input type="hidden" name="lead_source" value="Accompagnement Total Talentiques">
       <input type="hidden" name="company" value="Particulier">
       <input type="hidden" name="description" id="accomp-description" value="">
+      <!-- Salesforce CRM fields -->
+      <input type="hidden" name="00Nd300000AmvSr" value="TalentiQues">
+      <input type="hidden" name="00Nd300000AmgIY" value="International Support">
+      <input type="hidden" name="00Nd300000Amve9" value="International Career Support">
+      <input type="hidden" name="00Nd300000Amvfl" id="accomp-target-country" value="">
+      <input type="hidden" name="00Nd300000AmcIA" id="accomp-professional-status" value="">
+      <input type="hidden" name="00Nd300000AmvhN" value="Custom Quote">
+      <input type="hidden" name="00Nd300000Amviz" id="accomp-linkedin-salesforce" value="">
+      <input type="hidden" name="00Nd300000Amvkb" id="accomp-page-url" value="">
+      <input type="hidden" name="00Nd300000AmvmD" value="New">
 
       <!-- BLOC 1 : IDENTITÉ -->
       <div style="font-size:11px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--border)">01 — Vos coordonnées</div>
@@ -833,6 +861,26 @@ textarea.form-control{resize:vertical;min-height:80px;line-height:1.6}
 <script>
 var _paypalUrl='';
 
+/* Salesforce mapping helpers */
+function selectedText(id){
+  var el=document.getElementById(id);
+  if(!el || !el.options || el.selectedIndex < 0) return '';
+  return el.options[el.selectedIndex].text.trim();
+}
+function mapProfessionalStatus(value){
+  var v=(value || '').toLowerCase();
+  if(v.indexOf('étudiant')>-1 || v.indexOf('etudiant')>-1 || v.indexOf('alternant')>-1 || v.indexOf('stage')>-1) return 'Student';
+  if(v.indexOf('recherche')>-1 || v.indexOf('reconversion')>-1) return 'Job Seeker';
+  if(v.indexOf('salarié')>-1 || v.indexOf('salarie')>-1 || v.indexOf('poste')>-1 || v.indexOf('cadre')>-1 || v.indexOf('manager')>-1) return 'Employed';
+  if(v.indexOf('freelance')>-1 || v.indexOf('indépendant')>-1 || v.indexOf('independant')>-1) return 'Freelancer';
+  return v ? 'Other' : '';
+}
+function setValue(id,value){
+  var el=document.getElementById(id);
+  if(el) el.value=value || '';
+}
+
+
 function openAccompModal(){
   document.getElementById('accompModal').classList.add('active');
   document.body.style.overflow='hidden';
@@ -879,6 +927,8 @@ function openModal(paypalUrl,offerName,offerPrice){
   document.getElementById('modalOfferName').textContent=offerName;
   document.getElementById('modalOfferPrice').textContent=offerPrice;
   document.getElementById('sf-returl').value=paypalUrl;
+  setValue('sf-requested-offer','Full Career Package');
+  setValue('sf-page-url',window.location.href);
   document.getElementById('contactModal').classList.add('active');
   document.body.style.overflow='hidden';
   document.querySelector('#contactModal .modal-box').scrollTop=0;
@@ -947,6 +997,10 @@ document.addEventListener('DOMContentLoaded',function(){
       desc+='Objectif : '+objectif+'\n';
       if(infos)desc+='Infos : '+infos;
       document.getElementById('accomp-description').value=desc;
+      setValue('accomp-target-country',marche);
+      setValue('accomp-professional-status',mapProfessionalStatus(statut));
+      setValue('accomp-linkedin-salesforce',linkedin);
+      setValue('accomp-page-url',window.location.href);
       var btn=document.getElementById('accompSubmitBtn');
       if(btn){btn.disabled=true;btn.textContent='Envoi en cours…';}
       setTimeout(function(){
@@ -975,6 +1029,9 @@ document.addEventListener('DOMContentLoaded',function(){
       desc+='Objectif : '+objectif+'\n';
       if(infos)desc+='Infos : '+infos;
       document.getElementById('sf-description').value=desc;
+      setValue('sf-professional-status',mapProfessionalStatus(statut));
+      setValue('sf-linkedin-salesforce',linkedin);
+      setValue('sf-page-url',window.location.href);
       var btn=document.getElementById('modalSubmitBtn');
       if(btn){btn.disabled=true;btn.textContent='Envoi en cours…';}
       setTimeout(function(){window.location.href=_paypalUrl;},900);
@@ -996,6 +1053,9 @@ document.addEventListener('DOMContentLoaded',function(){
       desc+='Objectif : '+objectif+'\n';
       if(infos)desc+='Infos : '+infos;
       document.getElementById('diag-description').value=desc;
+      setValue('diag-professional-status',mapProfessionalStatus(statut));
+      setValue('diag-linkedin-salesforce',linkedin);
+      setValue('diag-page-url',window.location.href);
       var btn=document.getElementById('diagSubmitBtn');
       if(btn){btn.disabled=true;btn.textContent='Envoi en cours…';}
       setTimeout(function(){
